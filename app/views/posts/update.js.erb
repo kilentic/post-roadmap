@@ -1,0 +1,7 @@
+<% if @post.valid? %>
+  $("#post_<%= @post.id %>").replaceWith("<%= j render 'post', post: @post %>");
+  $(".modal-e").css('display', 'none');
+  $(".card-e").css('display', 'none');
+<% else %>
+  $('.error-wraper').html("<%= j render 'shared/error_messages', post: @post %>");
+<% end %>

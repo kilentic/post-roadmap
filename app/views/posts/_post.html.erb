@@ -1,0 +1,9 @@
+<div class="card" id="post_<%= post.id %>">
+  <div class="card-block">
+    <p class="card-text">
+        <%= post.message %>
+    </p>
+    <%= link_to "Edit", edit_post_path(post), class: "btn btn-primary edit_btn", remote: true %>
+    <%= link_to "Delete", post_path(post), method: "delete", remote: true, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+  </div>
+</div>

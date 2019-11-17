@@ -1,0 +1,23 @@
+<div class="modal-e" id="bg-modal" style="display: none;">
+</div>
+
+<div class="card-e" style="display: none;">
+</div>
+
+<div class="wrapper-nonposition container">
+    <ul class="nav nav-dark">
+        <%= link_to "create post", new_post_path, remote: true, class: "btn btn-primary", id:"new_btn" %>
+    </ul>
+
+    <div class="container">
+        <div class="card-deck-wrapper">
+            <div class=" card-grid">
+                <%= render @posts %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="paginator">
+    <%= paginate @posts, remote: true %>
+</div>
