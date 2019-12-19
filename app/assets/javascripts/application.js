@@ -17,3 +17,28 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
+
+function settingDropdown(postId) {
+    $("#setting-post-dropdown_" + postId).toggleClass("show");
+}
+
+function settingDropdownComment(postId){
+    $("#setting-comment-dropdown_"+postId).toggleClass("show")
+}
+
+function showComments(postId) {
+    $("#post_" + postId + " .comments-wrap").toggle(".show");
+    $(this).toggleClass("active");
+}
+window.onclick = function(event) {
+    if (!event.target.matches('.fa-angle-down') && !event.target.matches('.setting-post-btn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        var i;
+        for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}

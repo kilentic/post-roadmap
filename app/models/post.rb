@@ -1,4 +1,4 @@
 class Post < ApplicationRecord
-  validates :message, presence: true, length: {  maximum: 255 }
+  validates :message, presence: true
   paginates_per 50
 end

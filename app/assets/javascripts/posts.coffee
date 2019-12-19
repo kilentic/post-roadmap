@@ -8,6 +8,9 @@ $(document).bind 'DOMSubtreeModified', () ->
   $("#new_btn").click ->
     $(".modal-e").css('display', 'block');
     $(".card-e").css('display', 'block');
-  $(".edit_btn").click ->
+  $(".edit-btn").click ->
     $(".modal-e").css('display', 'block');
     $(".card-e").css('display', 'block');
+  $("setting-post-btn").click ->
+    $("#setting-post-dropdown").css('display', 'block');
+

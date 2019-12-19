@@ -1,7 +1,6 @@
 <% if !@post.valid? %>
-    $('.error-wraper').html("<%= j render 'shared/error_messages', post: @post %>");
+    $('.error-wraper').html('<%= j render 'shared/error_messages', post: @post %>');
 <% else %>
-    $('.card-grid').append("<%=j render "post", post: @post %>");
     $(".modal-e").css('display', 'none');
     $(".card-e").css('display', 'none');
 <% end %>

@@ -1,11 +1,225 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.header {
+  margin: 0 7% 0 7%;
+    padding: 10px;
+    top: 0;
+    background: #2680C2;
+    position: fixed;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 5;
+    width: 86%;
+    border-radius: 0 0 45px 45px;
+    
+    .navb {
+          display: grid;
+    grid-template-columns: 20% 60% 20%;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    input {
+      width: 80%;
+    margin: 0 auto;
+    border: none;
+    border-radius: 36px;
+    font-size: 21px;
+    padding: 0 10px;
+    }
+    input:focus{
+      outline: none;
+      box-shadow: 0 0 2pt 1pt gray;
+
+    }
+    a{
+          margin: 0 auto;
+    }
+    a:hover{
+      text-decoration: none;
+    }
+    }
+    .home{
+      font-size: 30px;
+      width: 48px;
+    display: block;
+    background: cadetblue;
+    margin-left: 1%;
+    padding: 2px 11px;
+    border-radius: 9px;
+    color: white;
+    font-weight: bold;
+    }
+    .new-btn{
+      display: none;
+    }
+}
+.card-deck-wrapper {
+      margin-top: 100px;
+}
+
 .card-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
     .card {
+      border: none;
+      background: none;
+      .comments-wrap {
+	      	.comment{
+
+		    float: left;
+    width: 87%;
+    background: gainsboro;
+    padding: 5px 10px;
+    border-radius: 12px;
+    margin-left: 1%;
+
+    h6 {
+	        margin-bottom: 0;
+    font-weight: 600;
+    color: cadetblue;
+    }
+	}
+	padding: 15px;
+	display: none;
+        margin: 0 auto;
+            width: 94%;
+    background: white;
+    border: solid darkgrey;
+    border-radius: 0 0 10px 10px;
+    border-width: 0 2px 2px;
+      }
+
+	.card-block {
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 2;
+    border-radius: 7px;
+		padding: 19px;
+
+    
+
+    .react-wrap{
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+
+      button {
+            background: none;
+            color: grey;
+    border-radius: 5px;
+    border: 2px solid #F0F4F8;
+    padding: 5px;
+    margin: 0 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s all;
+      }
+      button:hover{
+        color: #4098D7;
+        background: #F0F4F8;
+
+      }
+      button:focus{
+        outline: none;
+      }
+    }
+		.header-post {
+			img {
+				float: left;
+			border: 1px solid gray;
+    			border-radius: 37px;
+				
+			}
+			.name-at {
+				margin: 4px 5px;
+				float: left;
+
+				h5 {
+				font-weight: bold;
+				font-size: 20px;
+    				color: cadetblue;
+				margin-bottom: 0;
+			}
+			p {
+				color: gray;
+
+			}
+
+			}
+			.dropdown-wrapper {
+				float: right;
+
+        .setting-post-btn {
+              cursor: pointer;
+              background: none;
+              border: none;
+              font-size: 22px;
+              font-weight: 400;
+              color: gray;
+        
+        }
+        .setting-post-btn:hover{
+		color: black;
+        }
+        .setting-post-btn:focus{
+          outline: none;
+        }
+				.dropdown-content{
+          display:none;
+					background: white;
+					box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+					padding: 10px 0;
+    					border-radius: 7px;
+					width: fit-content;
+					position: absolute;
+					z-index: 1;
+					-webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+       					-moz-animation: fadein 1s; /* Firefox < 16 */
+				        -ms-animation: fadein 1s; /* Internet Explorer */
+				        -o-animation: fadein 1s; /* Opera < 12.1 */
+					a{
+						display: block;
+					    	width: 100%;
+    						padding: 3px 20px;
+   	 					color: black;
+						transition: 0.5s ease-in-out;
+					}
+
+					.edit-btn:hover{
+						text-decoration: none;
+						background: gray;
+						color: white;
+						border-radius: 5px;
+						transform: translate(0.75em, 0);
+
+						box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+					}
+					.del-btn:hover{
+						text-decoration: none;
+						background: red;
+						color: white;
+						border-radius: 5px;
+						transform: translate(0.75em, 0);
+
+						box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+
+
+					}
+				}
+				
+			
+			}
+		}
+		.card-text{
+			font-size: 20px;
+		}
+
+	}
         margin: 10px;
+	-webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+       	-moz-animation: fadein 2s; /* Firefox < 16 */
+        -ms-animation: fadein 2s; /* Internet Explorer */
+        -o-animation: fadein 2s; /* Opera < 12.1 */
+        animation: fadein 2s;
     }
 }
 
@@ -14,13 +228,13 @@
     width: 100%;
     height: 100%;
     background: gray;
-    z-index: 1;
+    z-index: 3;
     opacity: 0.5;
 }
 
 .card-e {
     position: absolute;
-    z-index: 2;
+    z-index: 4;
     text-align: center;
     background: wheat;
     left: 47%;
@@ -33,7 +247,16 @@
         display: block;
     }
 }
-
+.active {
+	color: #4098D7;
+        background: #F0F4F8;
+}
+.small-avatar{
+	float: left;
+    border: 1px solid gray;
+    border-radius: 37px;
+    max-width: 40px;
+}
 #error_explanation {
     color: red;
     ul {
@@ -44,4 +267,166 @@
 
 #paginator {
     margin: 30px 20%;
+}
+.clearfix{
+	clear: both;
+}
+.hidden{
+	display: none;
+}
+.show{
+  display: block !important;
+}
+.comment-wrap{
+	margin: 15px 0;
+}
+.input-comment {
+
+	input {
+		
+	
+	float: left;
+    width: 87%;
+    margin-left: 1%;
+    padding: 7px 10px;
+    background: #f2f3f5;
+    border-radius: 32px;
+    border: 1px solid #ccd0d5;
+    transition: 0.3s all;
+    }
+    input:focus{
+	      box-shadow: 0 0 2pt 1pt gray;
+	      outline: none;
+    }
+}
+.show-box-shadow {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	transform: 1s all;
+}
+.new-post-input{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: white;
+    border-radius: 10px;
+    padding: 15px;
+
+    .ava-text {
+          width: 100%;
+    margin-bottom: 20px;
+
+    .small-avatar{
+      max-width: 60px;
+    }
+
+    textarea{
+          width: 80%;
+    margin-left: 1%;
+    border: none;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    height: 68px;
+    font-size: 30px;
+    }
+    textarea:focus{
+      outline: none;
+
+    }
+    }
+    button{
+      display: none;
+    width: 100%;
+    }
+}
+.dropdown-wrapper {
+				float: right;
+
+        .setting-post-btn {
+              cursor: pointer;
+              background: none;
+              border: none;
+              font-size: 22px;
+              font-weight: 400;
+              color: gray;
+
+        }
+        .setting-post-btn:hover{
+		color: black;
+        }
+        .setting-post-btn:focus{
+          outline: none;
+        }
+				.dropdown-content{
+          display:none;
+					background: white;
+					box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+					padding: 10px 0;
+    					border-radius: 7px;
+					width: fit-content;
+					position: absolute;
+					z-index: 1;
+					-webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+       					-moz-animation: fadein 1s; /* Firefox < 16 */
+				        -ms-animation: fadein 1s; /* Internet Explorer */
+				        -o-animation: fadein 1s; /* Opera < 12.1 */
+					a{
+						display: block;
+					    	width: 100%;
+    						padding: 3px 20px;
+   	 					color: black;
+						transition: 0.5s ease-in-out;
+					}
+
+					.edit-btn:hover{
+						text-decoration: none;
+						background: gray;
+						color: white;
+						border-radius: 5px;
+						transform: translate(0.75em, 0);
+
+						box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+					}
+					.del-btn:hover{
+						text-decoration: none;
+						background: red;
+						color: white;
+						border-radius: 5px;
+						transform: translate(0.75em, 0);
+
+						box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+
+
+					}
+				}
+
+
+			}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }

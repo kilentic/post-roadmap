@@ -3,14 +3,18 @@
 
 <div class="card-e" style="display: none;">
 </div>
-
+<%= render "shared/header" %>
 <div class="wrapper-nonposition container">
-    <ul class="nav nav-dark">
-        <%= link_to "create post", new_post_path, remote: true, class: "btn btn-primary", id:"new_btn" %>
-    </ul>
-
     <div class="container">
         <div class="card-deck-wrapper">
+          <div class="new-post-input">
+            <div class="ava-text">
+                  <%= image_tag "avatar.jpg", class:"small-avatar" %>
+
+                  <textarea id="new-post-textarea" placeholder="Hi Dai, what are you thinking?" maxlength="1000000" name="new-post-textarea"></textarea>
+            </div>
+                <button type="button" class="btn btn-primary">Post</button>
+          </div>
             <div class=" card-grid">
                 <%= render @posts %>
             </div>

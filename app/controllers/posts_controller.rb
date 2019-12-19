@@ -1,6 +1,12 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.order(:create_at).page params[:page]
+   @posts = Post.order(:create_at).page params[:page]
+#   @posts = @posts = Post.paginate(page: params[:page])
+#   if !request.referer.nil?
+#     respond_to do |format|
+#       format.js
+#     end
+#   end
   end
 
   def edit 
@@ -26,6 +32,8 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         format.js
+        @posts = Post.order(:create_at).page params[:page]
+        redirect_to "/?page=#{@posts.total_pages}"
       else
         format.js
       end
