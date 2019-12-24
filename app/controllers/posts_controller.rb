@@ -1,12 +1,11 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
   def index
-   @posts = Post.order(:create_at).page params[:page]
+   @posts = Post.order(id: :desc).page params[:page]
+   @post = Post.new
+   @comment = Comment.new
+   @like = Like.new
 #   @posts = @posts = Post.paginate(page: params[:page])
-#   if !request.referer.nil?
-#     respond_to do |format|
-#       format.js
-#     end
-#   end
   end
 
   def edit 
@@ -28,12 +27,12 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new message_params
+    @post = current_user.posts.new message_params
     respond_to do |format|
       if @post.save
+        @comment = Comment.new
+        @like = Like.new
         format.js
-        @posts = Post.order(:create_at).page params[:page]
-        redirect_to "/?page=#{@posts.total_pages}"
       else
         format.js
       end

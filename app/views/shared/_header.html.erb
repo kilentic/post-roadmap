@@ -1,9 +1,21 @@
 <div class="header">
       <ul class="navb">
-        <%= link_to "create post", new_post_path, remote: true, class: "new-btn btn btn-primary", id:"new_btn" %>
         <%= link_to "M", "/", class:"home" %>
         <input type="text" name="search" id="search" placeholder="Search">
-        <%= link_to image_tag("avatar.jpg", class:"small-avatar"), "#" %>
+        <div class="user-setting">
+        <%= link_to image_tag(current_user.image, class:"small-avatar"), "#" %>
+                <div class="dropdown-wrapper">
+          <button type="button" class="setting-post-btn" onclick="dropdown('#dropdown-header')"><%= fa_icon "angle-down" %></button>
+          <div class="dropdown-content"  id="dropdown-header">
+          <%= link_to"/", class: "edit-btn", remote: true do %>
+            <%= fa_icon "pencil" %> Edit
+          <% end %>
+        <%= link_to  destroy_user_session_path, method: :delete, class: "del-btn" do %>
+          <%= fa_icon "sign-out" %> Sign out
+        <% end %>
+        </div>
+        </div>
+        </div>
     </ul>
 
 </div>

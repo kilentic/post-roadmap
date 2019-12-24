@@ -1,0 +1,3 @@
+$("#comment_<%= @comment.post.id %>").prepend('<%= j render @comment %>');
+$("#comment-wrap_<%= @comment.post.id %> #comment_content").val("");
+$("#post_<%= @comment.post.id %> .comment-count").html('<%= @comment.post.comments.count %>');

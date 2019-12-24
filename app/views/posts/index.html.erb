@@ -9,11 +9,15 @@
         <div class="card-deck-wrapper">
           <div class="new-post-input">
             <div class="ava-text">
-                  <%= image_tag "avatar.jpg", class:"small-avatar" %>
+                  <%= image_tag current_user.image, class:"small-avatar" %>
+                  <%= form_for(@post,  remote: true, url: posts_path(@post)) do |f| %>
+                    <div class="error-wraper"></div>
+                    <%= f.text_area :message, id:"new_post_textarea", placeholder: "Hi #{current_user.name}, what are you thinking?" %>
+                    <%= f.submit "Post", class:"btn btn-primary" %>
+                  <% end %>
 
-                  <textarea id="new-post-textarea" placeholder="Hi Dai, what are you thinking?" maxlength="1000000" name="new-post-textarea"></textarea>
+
             </div>
-                <button type="button" class="btn btn-primary">Post</button>
           </div>
             <div class=" card-grid">
                 <%= render @posts %>

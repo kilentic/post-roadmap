@@ -1,0 +1,26 @@
+<div class="commenti" id="cmt_<%= comment.id %>">
+      <%= image_tag comment.user.image, class:"small-avatar" %>
+      <div class="comment">
+        <h6><%= comment.user.name %></h6>
+        <%= comment.content %>
+      </div>
+            <div class="dropdown-wrapper">
+<!--          <button type="button" class="setting-post-btn" onclick="settingDropdownComment()"><%= fa_icon "angle-down" %></button>
+          <div class="dropdown-content" id="setting-comment-dropdown_">
+          <%= link_to "/", class: "edit-btn", remote: true do %>
+            <%= fa_icon "pencil" %> Edit
+          <% end %>
+          <%= link_to "/", method: "delete", remote: true, class: "del-btn", data: { confirm: "Are you sure?" } do %>
+          <%= fa_icon "trash" %> Delete
+        <% end %>
+          </div> -->
+        </div>
+        <div class="clearfix"></div>
+      <%= form_for @like, remote:true do |f| %>
+        <%= f.hidden_field :duty_type, value:"Comment" %>
+        <%= f.hidden_field :duty_id, value: comment.id %>
+        <%= f.button :submit, remote:true, id:"like_Comment_#{comment.id}", class:(comment.likes.find_by(user_id:current_user.id)?"active-btn":"") do %>
+           Like(<span class="like-count"><%= comment.likes.count %></span>)
+        <% end %>
+      <% end %>
+</div>

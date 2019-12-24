@@ -1,10 +1,10 @@
 <div class="card" id="post_<%= post.id %>">
   <div class="card-block">
     <div class="header-post">
-      <%= image_tag 'avatar.jpg' %> 
+      <%= image_tag (post.user.image) %> 
       <div class="name-at">
-        <h5>Tran Anh</h5>
-        <p>3 giờ</p>
+        <h5><%= post.user.name %></h5>
+        <p>3h</p>
       </div>
         <div class="dropdown-wrapper">
           <button type="button" class="setting-post-btn" onclick="settingDropdown(<%= post.id %>)"><%= fa_icon "angle-down" %></button>
@@ -24,40 +24,31 @@
     </p>
     <hr>
     <div class="react-wrap">
-      <button><%= fa_icon "thumbs-up" %> Like(99)</button>
-      <button onclick="showComments(<%= post.id %>)"><%= fa_icon "comment" %> Comment(12)</button>
+      <%= form_for @like, remote:true do |f| %>
+        <%= f.hidden_field :duty_type, value:"Post" %>
+        <%= f.hidden_field :duty_id, value: post.id %>
+        <%= f.button :submit, id:"like_Post_#{post.id}", remote:true, class:(post.likes.find_by(user_id:current_user.id)?"active-btn":"") do %>
+          <%= fa_icon "thumbs-up" %> Like(<span class="like-count"><%= post.likes.count %></span>)
+        <% end %>
+      <% end %>
+      <button onclick="showComments(<%= post.id %>)"><%= fa_icon "comment" %> Comment(<span class="comment-count"><%= post.comments.count %></span>)</button>
     </div>
   </div>
   <div class="comments-wrap" id="comment-wrap_<%= post.id %>">
     <div class="input-comment">
-      <%= image_tag "avatar.jpg", class:"small-avatar" %>
-      <input type="text" name="comment" id="comment" multiline=true value="">
+      <%= image_tag current_user.image, class:"small-avatar" %>
+      <%= form_for @comment, remote: true do |f| %>
+        <%= f.hidden_field :post_id, value: post.id %>
+        <%= f.text_field :content, placeholder:"Write a comment..."  %>
+      <% end %>
       <div class="clearfix"></div>
 
     </div>
     <hr>
-
     <div class="comment-wrap" id="comment_<%= post.id %>">
-      <%= image_tag "avatar.jpg", class:"small-avatar" %>
-      <div class="comment">
-        <h6>Ha Lan</h6>
-        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-        tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At
-        vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-        no sea takimata sanctus est Lorem ipsum dolor sit amet.
-      </div>
-            <div class="dropdown-wrapper">
-          <button type="button" class="setting-post-btn" onclick="settingDropdownComment(<%= post.id %>)"><%= fa_icon "angle-down" %></button>
-          <div class="dropdown-content" id="setting-comment-dropdown_<%= post.id %>">
-          <%= link_to edit_post_path(post), class: "edit-btn", remote: true do %>
-            <%= fa_icon "pencil" %> Edit
-          <% end %>
-          <%= link_to post_path(post), method: "delete", remote: true, class: "del-btn", data: { confirm: "Are you sure?" } do %>
-          <%= fa_icon "trash" %> Delete
-        <% end %>
-        </div>
-        </div>
-      <div class="clearfix"></div>
+
+      <%= render  post.comments %>
     </div>
+
   </div>
 </div>

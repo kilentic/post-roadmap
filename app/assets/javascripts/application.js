@@ -18,18 +18,34 @@
 //= require_tree .
 //= require bootstrap-sprockets
 
+function dropdown(idTag) {
+    $(idTag).toggleClass("show");
+}
+
 function settingDropdown(postId) {
     $("#setting-post-dropdown_" + postId).toggleClass("show");
 }
 
-function settingDropdownComment(postId){
-    $("#setting-comment-dropdown_"+postId).toggleClass("show")
+function settingDropdownComment(postId) {
+    $("#setting-comment-dropdown_" + postId).toggleClass("show")
 }
 
 function showComments(postId) {
     $("#post_" + postId + " .comments-wrap").toggle(".show");
     $(this).toggleClass("active");
 }
+$('document').ready(function() {
+
+    $("#new_post_textarea").keyup( function(){
+      console.log($("#new_post_textarea").val().trim().length);
+      if($("#new_post_textarea").val().trim().length > 0){
+        $(".new_post input[type='submit']").addClass("show");
+      }else{
+        $(".new_post input[type='submit']").removeClass("show");
+      }
+    });
+
+});
 window.onclick = function(event) {
     if (!event.target.matches('.fa-angle-down') && !event.target.matches('.setting-post-btn')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");

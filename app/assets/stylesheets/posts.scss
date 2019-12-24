@@ -65,8 +65,8 @@
 	      	.comment{
 
 		    float: left;
-    width: 87%;
     background: gainsboro;
+    max-width: 87%;
     padding: 5px 10px;
     border-radius: 12px;
     margin-left: 1%;
@@ -102,6 +102,7 @@
 
       button {
             background: none;
+	    width: 100%;
             color: grey;
     border-radius: 5px;
     border: 2px solid #F0F4F8;
@@ -125,6 +126,7 @@
 				float: left;
 			border: 1px solid gray;
     			border-radius: 37px;
+          max-width: 50px;
 				
 			}
 			.name-at {
@@ -222,7 +224,18 @@
         animation: fadein 2s;
     }
 }
+.new_like {
+  
 
+button:focus{
+  outline: none;
+}
+}
+.active-btn {
+	        color: #4098D7 !important;
+          font-weight: bold;
+
+}
 .modal-e {
     position: fixed;
     width: 100%;
@@ -257,6 +270,10 @@
     border-radius: 37px;
     max-width: 40px;
 }
+.add-z-index-6 {
+  z-index: 6;
+  position: absolute;
+}
 #error_explanation {
     color: red;
     ul {
@@ -279,6 +296,17 @@
 }
 .comment-wrap{
 	margin: 15px 0;
+  .commenti{
+    margin-bottom: 10px;
+
+  }
+ button{
+   margin-left: 45px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: gray;
+ } 
 }
 .input-comment {
 
@@ -305,18 +333,21 @@
 }
 .new-post-input{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 35px;
   background: white;
     border-radius: 10px;
     padding: 15px;
 
     .ava-text {
           width: 100%;
-    margin-bottom: 20px;
 
     .small-avatar{
       max-width: 60px;
     }
 
+    .new_post {
+      
+    
     textarea{
           width: 80%;
     margin-left: 1%;
@@ -326,15 +357,20 @@
     height: 68px;
     font-size: 30px;
     }
+
+
     textarea:focus{
       outline: none;
 
     }
-    }
-    button{
-      display: none;
+
+    input[type='submit']{
     width: 100%;
+    margin-top: 20px;
+    display: none;
     }
+  }
+  }
 }
 .dropdown-wrapper {
 				float: right;
@@ -402,6 +438,9 @@
 
 			}
 
+    #new_post_textarea:focus{
+      outline: none;
+    }
 @keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
