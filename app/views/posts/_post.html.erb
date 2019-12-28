@@ -3,7 +3,7 @@
     <div class="header-post">
       <%= image_tag (post.user.image) %> 
       <div class="name-at">
-        <h5><%= post.user.name %></h5>
+        <%= link_to post.user.name, user_path(post.user) %>
         <p>3h</p>
       </div>
         <div class="dropdown-wrapper">

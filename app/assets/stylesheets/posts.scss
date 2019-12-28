@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .header {
   margin: 0 7% 0 7%;
-    padding: 10px;
+    padding: 5px;
     top: 0;
     background: #2680C2;
     position: fixed;
@@ -44,7 +44,7 @@
     display: block;
     background: cadetblue;
     margin-left: 1%;
-    padding: 2px 11px;
+    padding: 0px 11px;
     border-radius: 9px;
     color: white;
     font-weight: bold;
@@ -133,12 +133,15 @@
 				margin: 4px 5px;
 				float: left;
 
-				h5 {
+				a {
 				font-weight: bold;
 				font-size: 20px;
     				color: cadetblue;
 				margin-bottom: 0;
 			}
+      a:hover{
+        text-decoration: none;
+      }
 			p {
 				color: gray;
 
