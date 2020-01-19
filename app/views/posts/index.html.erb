@@ -1,8 +1,7 @@
-<div class="modal-e" id="bg-modal" style="display: none;">
-</div>
 
-<div class="card-e" style="display: none;">
-</div>
+
+<!-- <div class="card-e" style="display: none;">
+</div> -->
 <%= render "shared/header" %>
 <div class="wrapper-nonposition container">
     <div class="container">
@@ -12,7 +11,7 @@
                   <%= image_tag current_user.image, class:"small-avatar" %>
                   <%= form_for(@post,  remote: true, url: posts_path(@post)) do |f| %>
                     <div class="error-wraper"></div>
-                    <%= f.text_area :message, id:"new_post_textarea", placeholder: "Hi #{current_user.name}, what are you thinking?" %>
+                    <%= f.text_area :message, id:"new_post_textarea", placeholder: "Hi #{current_user.name}, what's your mind?" %>
                     <%= f.submit "Post", class:"btn btn-primary" %>
                   <% end %>
 

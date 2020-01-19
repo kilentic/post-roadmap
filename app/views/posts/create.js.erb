@@ -1,8 +1,6 @@
 <% if !@post.valid? %>
     $('.error-wraper').html('<%= j render 'shared/error_messages', post: @post %>');
 <% else %>
-    $(".modal-e").css('display', 'none');
-    $(".card-e").css('display', 'none');
     $(".card-grid").prepend('<%= j render 'post', post: @post %>');
     $(".new_post input[type='submit']").removeClass("show");
     $("#new_post_textarea").val("");

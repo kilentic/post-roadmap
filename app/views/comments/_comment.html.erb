@@ -1,26 +1,37 @@
 <div class="commenti" id="cmt_<%= comment.id %>">
-      <%= image_tag comment.user.image, class:"small-avatar" %>
-      <div class="comment">
-        <h6><%= comment.user.name %></h6>
-        <%= comment.content %>
-      </div>
-            <div class="dropdown-wrapper">
-<!--          <button type="button" class="setting-post-btn" onclick="settingDropdownComment()"><%= fa_icon "angle-down" %></button>
-          <div class="dropdown-content" id="setting-comment-dropdown_">
-          <%= link_to "/", class: "edit-btn", remote: true do %>
-            <%= fa_icon "pencil" %> Edit
-          <% end %>
-          <%= link_to "/", method: "delete", remote: true, class: "del-btn", data: { confirm: "Are you sure?" } do %>
-          <%= fa_icon "trash" %> Delete
-        <% end %>
-          </div> -->
+    <%= link_to image_tag(comment.user.image, class:"small-avatar"), "#" %>
+        <div class="comment">
+            <h6>
+                <%= comment.user.name %>
+            </h6>
+            <div class="content">
+                <%= comment.content %>
+            </div>
         </div>
-        <div class="clearfix"></div>
-      <%= form_for @like, remote:true do |f| %>
-        <%= f.hidden_field :duty_type, value:"Comment" %>
-        <%= f.hidden_field :duty_id, value: comment.id %>
-        <%= f.button :submit, remote:true, id:"like_Comment_#{comment.id}", class:(comment.likes.find_by(user_id:current_user.id)?"active-btn":"") do %>
-           Like(<span class="like-count"><%= comment.likes.count %></span>)
-        <% end %>
+        <% if comment.post.user == current_user || comment.user == current_user %>
+        <div class="dropdown-wrapper">
+            <button type="button" class="setting-post-btn" onclick="dropdown('#cmt_setting_<%= comment.id %>')"><%= fa_icon "angle-down" %></button>
+            <div class="dropdown-content" id="cmt_setting_<%= comment.id %>">
+              <% if comment.user == current_user %>
+                <%= link_to edit_comment_path(comment), class: "edit-btn", remote: true do %>
+                    <%= fa_icon "pencil" %> Edit
+                  <% end %>
+                <% end %>
+                            <%= link_to comment_path(comment), method: "delete", remote: true, class: "del-btn", data: { confirm: "Are you sure?" } do %>
+                                <%= fa_icon "trash" %> Delete
+                                    <% end %>
+            </div>
+        </div>
       <% end %>
+        <div class="clearfix"></div>
+        <div class="like-time-comment-wrap">
+            <%= form_for @like, remote:true, :html => {:id => "new_like_comment_#{comment.id}"} do |f| %>
+                <%= f.hidden_field :duty_type, value:"Comment", id: "like-duty-comment_#{comment.id}" %>
+                    <%= f.hidden_field :duty_id, value: comment.id, id:"duty-comment_#{comment.id}" %>
+                        <%= f.button :submit, remote:true, id:"like_Comment_#{comment.id}", class:(comment.likes.find_by(user_id:current_user.id)?"active-btn":"") do %>
+                            Like(<span class="like-count"><%= comment.likes.count %></span>)
+                            <% end %>
+                                <% end %>
+                                <p><%= comment.interval %> <%= comment.unit %></p>
+        </div>
 </div>

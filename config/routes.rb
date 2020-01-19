@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   resources :posts
   resources :comments
   resources :likes
-  resources :users
+  resources :usrs
+  resources :follows
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
     get 'auth/:provider/callback', to: 'sessions#create'
 end

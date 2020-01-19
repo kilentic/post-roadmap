@@ -18,6 +18,22 @@
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
+    
+    .dropdown-wrapper{
+      float: left;
+
+    }
+    .notify-wrapper{
+      float: left;
+      button{
+            margin: 4px 8px 0;
+    background: no-repeat;
+    border: none;
+    color: wheat;
+    cursor: pointer;
+    font-size: 22px;
+      }
+    }
     input {
       width: 80%;
     margin: 0 auto;
@@ -33,6 +49,7 @@
     }
     a{
           margin: 0 auto;
+          float: left;
     }
     a:hover{
       text-decoration: none;
@@ -157,7 +174,7 @@
               border: none;
               font-size: 22px;
               font-weight: 400;
-              color: gray;
+              color: white;
         
         }
         .setting-post-btn:hover{
@@ -249,18 +266,28 @@ button:focus{
 }
 
 .card-e {
-    position: absolute;
+    width: 35%;
+    left: 33%;
+    background: #D9E2EC;
+    top: 34%;
+    border: 1px #9FB3C8 solid;
+
+    position: fixed;
     z-index: 4;
     text-align: center;
-    background: wheat;
-    left: 47%;
-    top: 36%;
     border-radius: 20px;
     form {
-        margin: 30px;
+        margin: 10px 30px;
     }
     textarea {
         display: block;
+        border: none;
+    }
+    label{
+      font-size: 21px;
+    }
+    input[type='submit']{
+      margin-top: 20px;
     }
 }
 .active {
@@ -294,6 +321,14 @@ button:focus{
 .hidden{
 	display: none;
 }
+.btn-wrap {
+  text-align: right;
+  margin-top: 8px;
+  .bg-yell{
+    background: #FCE588;
+    color: black;
+  }
+}
 .show{
   display: block !important;
 }
@@ -301,6 +336,16 @@ button:focus{
 	margin: 15px 0;
   .commenti{
     margin-bottom: 10px;
+    
+    .like-time-comment-wrap{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 200px;
+
+      p{
+        color: gray;
+      }
+    }
 
   }
  button{

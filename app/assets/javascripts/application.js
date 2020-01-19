@@ -34,15 +34,24 @@ function showComments(postId) {
     $("#post_" + postId + " .comments-wrap").toggle(".show");
     $(this).toggleClass("active");
 }
-$('document').ready(function() {
 
-    $("#new_post_textarea").keyup( function(){
-      console.log($("#new_post_textarea").val().trim().length);
-      if($("#new_post_textarea").val().trim().length > 0){
-        $(".new_post input[type='submit']").addClass("show");
-      }else{
-        $(".new_post input[type='submit']").removeClass("show");
-      }
+function cancerBtn(idPost) {
+    $("#edit_post_" + idPost).remove();
+    $("#post_" + idPost + " .card-text ").removeClass("hidden");
+}
+
+function cancerBtnCmt(idCmt) {
+    $("#edit_comment_" + idCmt).remove();
+    $("#cmt_" + idCmt + " .content").removeClass("hidden");
+}
+$(document).on('turbolinks:load', function() {
+    $("#new_post_textarea").keyup(function() {
+        console.log($("#new_post_textarea").val().trim().length);
+        if ($("#new_post_textarea").val().trim().length > 0) {
+            $(".new_post input[type='submit']").addClass("show");
+        } else {
+            $(".new_post input[type='submit']").removeClass("show");
+        }
     });
 
 });

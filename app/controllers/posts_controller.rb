@@ -1,10 +1,13 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   def index
-   @posts = Post.order(id: :asc).page params[:page]
    @post = Post.new
    @comment = Comment.new
    @like = Like.new
+   @followers = current_user.followers
+   @followers.push(current_user)
+   @posts = Post.where(user: [@followers]).order(created_at: :desc).page params[:page]
+   
 #   @posts = @posts = Post.paginate(page: params[:page])
   end
 
@@ -48,10 +51,10 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find_by id: params[:id]
-    respond_to do |format|
-      if @post.update_attributes message_params
-        format.js
-      else
+    if @post.update_attributes message_params
+      @like = Like.new
+      @comment = Comment.new
+      respond_to do |format|
         format.js
       end
     end

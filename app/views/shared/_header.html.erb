@@ -4,6 +4,9 @@
         <input type="text" name="search" id="search" placeholder="Search">
         <div class="user-setting">
         <%= link_to image_tag(current_user.image, class:"small-avatar"), "#" %>
+        <div class="notify-wrapper">
+          <button><%= fa_icon 'bell' %></button>
+        </div>
                 <div class="dropdown-wrapper">
           <button type="button" class="setting-post-btn" onclick="dropdown('#dropdown-header')"><%= fa_icon "angle-down" %></button>
           <div class="dropdown-content"  id="dropdown-header">
