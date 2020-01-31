@@ -20,11 +20,11 @@ class User < ApplicationRecord
   has_many :respones, foreign_key: :req_user_id, class_name: 'ReqFriend'
   has_many :res_users, through: :respones
 
-  has_many :currents, foreign_key: :friend_id, class_name: 'Friend'
-  has_many :current_users, through: :currents
+  has_many :current_users, foreign_key: :friend_id, class_name: 'Friend'
+  has_many :currents, through: :current_users
 
-  has_many :friends, foreign_key: :current_id, class_name: 'Friend'
-  has_many :friend_users, through: :friends
+  has_many :friend_users, foreign_key: :current_id, class_name: 'Friend'
+  has_many :friends, through: :friend_users
 
   def self.new_with_session params, session
     super.tap do |user|

@@ -3,7 +3,7 @@
   <%= link_to image_tag(user.image, class:"small-avatar"), "#" %>
   <p><%= link_to user.name, usr_path(user) %></p>
   <%= link_to "Delete", req_friend_path(user), remote: true, method: "delete", class:"btn btn-delete" %>
-  <%= link_to "Confirm", friends_path(user), class:"btn btn-confirm" %>
+  <%= link_to "Confirm", friends_path(user), remote: true, method: "post", class:"btn btn-confirm" %>
   <div class="clearfix"></div>
 <hr>
 </div>

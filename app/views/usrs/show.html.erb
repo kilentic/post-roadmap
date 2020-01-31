@@ -19,6 +19,7 @@
         <% end  %>
 
         <% if current_user != @user %>
+          
           <% if @isReqFriend %>
             <%= render 'req_friends/respone', user: @user %>
           <% end %>
@@ -26,7 +27,11 @@
             <%= render 'req_friends/requested', user: @user %>
           <% end %>
           <% if !@isReqFriend && !@isResFriend %>
-            <%= render 'req_friends/add_friend', user: @user %>
+            <% if !@isFriend %>
+              <%= render 'req_friends/add_friend', user: @user %>
+            <% else %>
+              <%= render 'friends/unfriend', user: @user %>
+            <% end %>
           <% end %>
         <% end %>
       </div>
