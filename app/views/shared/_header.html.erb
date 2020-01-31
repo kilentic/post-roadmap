@@ -4,8 +4,32 @@
         <input type="text" name="search" id="search" placeholder="Search">
         <div class="user-setting">
         <%= link_to image_tag(current_user.image, class:"small-avatar"), "#" %>
+        <div class="req-friend-wrapper">
+
+          <%= button_to req_friend_path(current_user), method: 'patch', remote: true, onclick: "dropdown('#show-notifies, .req-up')" do %>
+            <%= fa_icon 'users' %>
+            <% count = ReqFriend.where(res_user: current_user, seen: false).count %>
+            <div class="req-count-wrap">
+              <p class="p-notify req-count" ><%= (count >0) ? count : '' %></p>
+            </div>
+            <div class="arrow-up req-up"></div>
+          <% end %>
+          <div class="all-notifies" id="show-notifies">
+            <% current_user.req_users.each do |req_user| %>
+              <%= render 'req_friends/req_friend', user: req_user, c_user: current_user %>
+            <% end %>
+          </div>
+        </div>
+
         <div class="notify-wrapper">
-          <button><%= fa_icon 'bell' %></button>
+          <button><%= fa_icon 'bell' %>
+          <p class="p-notify">5</p>
+          <div class="arrow-up">
+          </div>
+          </button>
+          <div class="show-notify">
+
+          </div>
         </div>
                 <div class="dropdown-wrapper">
           <button type="button" class="setting-post-btn" onclick="dropdown('#dropdown-header')"><%= fa_icon "angle-down" %></button>

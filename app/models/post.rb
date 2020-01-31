@@ -36,4 +36,9 @@ class Post < ApplicationRecord
       self.unit = "just"
     end
   end
+
+  def broadcast_post user
+    PostBroadcastJob.perform_later self, user
+  end
+
 end

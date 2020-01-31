@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_17_073034) do
+ActiveRecord::Schema.define(version: 2020_01_20_145010) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "post_id"
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 2020_01_17_073034) do
   end
 
   create_table "friends", force: :cascade do |t|
-    t.integer "follower_id"
-    t.integer "followee_id"
+    t.integer "current_id"
+    t.integer "friend_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -62,6 +62,14 @@ ActiveRecord::Schema.define(version: 2020_01_17_073034) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "req_friends", force: :cascade do |t|
+    t.integer "req_user_id"
+    t.integer "res_user_id"
+    t.boolean "seen", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tags", force: :cascade do |t|
     t.integer "post_id"
     t.integer "user_id"
@@ -76,6 +84,7 @@ ActiveRecord::Schema.define(version: 2020_01_17_073034) do
     t.string "gender"
     t.string "address"
     t.integer "phone"
+    t.text "image", default: "avatar2.jpg"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false
@@ -86,7 +95,6 @@ ActiveRecord::Schema.define(version: 2020_01_17_073034) do
     t.string "provider"
     t.string "uid"
     t.string "name"
-    t.text "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -29,7 +29,7 @@
 
         <hr>
         <div class="react-wrap">
-          <%= form_for @like, remote:true, :html => {:id => "new_like_#{post.id}"} do |f| %>
+          <%= form_for Like.new, remote:true, :html => {:id => "new_like_#{post.id}"} do |f| %>
             <%= f.hidden_field :duty_type, value:"Post", id: "like-duty-post_#{post.id}" %>
             <%= f.hidden_field :duty_id, value: post.id, id:"duty-post_#{post.id}" %>
                         <%= f.button :submit, id:"like_Post_#{post.id}", remote:true, class:(post.likes.find_by(user_id:current_user.id)?"active-btn":"") do %>
@@ -42,7 +42,7 @@
     <div class="comments-wrap" id="comment-wrap-post_<%= post.id %>">
         <div class="input-comment">
             <%= link_to image_tag(post.user.image, class:"small-avatar"), "#" %>
-            <%= form_for @comment, remote: true, :html => { :id => "new_comment_#{post.id}"} do |f| %>
+            <%= form_for Comment.new, remote: true, :html => { :id => "new_comment_#{post.id}"} do |f| %>
               <%= f.hidden_field :post_id, value: post.id, id: "add-comment-post_#{post.id}" %>
                     <%= f.text_field :content, autocomplete:"off", placeholder:"Write a comment...", id: "comment_content_#{post.id}"  %>
                             <% end %>
@@ -52,7 +52,7 @@
         <hr>
         <div class="comment-wrap" id="comment-post_<%= post.id %>">
 
-            <%= render  post.comments.order(created_at: :desc) %>
+            <%= render  post.comments.order(created_at: :desc), current_user_id: current_user.id %>
         </div>
 
     </div>

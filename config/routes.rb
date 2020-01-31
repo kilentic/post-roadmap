@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   resources :likes
   resources :usrs
   resources :follows
+  resources :req_friends
+  resources :friends
+  mount Sidekiq::Web, at: '/sidekiq'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
     get 'auth/:provider/callback', to: 'sessions#create'
+
+  # Serve websocket cable requests in-process
+  mount ActionCable.server => '/cable'
 end

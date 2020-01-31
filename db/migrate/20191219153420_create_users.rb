@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration[5.2]
       t.string :gender
       t.string :address
       t.integer :phone
+      t.text :image, default: "avatar-male-default.jpg"
 
       t.timestamps
     end

@@ -25,7 +25,7 @@
       <% end %>
         <div class="clearfix"></div>
         <div class="like-time-comment-wrap">
-            <%= form_for @like, remote:true, :html => {:id => "new_like_comment_#{comment.id}"} do |f| %>
+            <%= form_for Like.new, remote:true, :html => {:id => "new_like_comment_#{comment.id}"} do |f| %>
                 <%= f.hidden_field :duty_type, value:"Comment", id: "like-duty-comment_#{comment.id}" %>
                     <%= f.hidden_field :duty_id, value: comment.id, id:"duty-comment_#{comment.id}" %>
                         <%= f.button :submit, remote:true, id:"like_Comment_#{comment.id}", class:(comment.likes.find_by(user_id:current_user.id)?"active-btn":"") do %>

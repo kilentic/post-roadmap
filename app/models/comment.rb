@@ -7,6 +7,9 @@ class Comment < ApplicationRecord
   belongs_to :post
   belongs_to :user
 
+  def comment_broadcast c_user
+    CommentBroadcastJob.perform_later self, c_user
+  end
   def interval_cal
     if self.created_at
       interval_seconds = Time.now - self.created_at

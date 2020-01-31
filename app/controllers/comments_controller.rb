@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
     @comment = current_user.comments.new comment_params
     respond_to do |format|
       if @comment.save
+        @comment.comment_broadcast current_user
         @like = Like.new
         format.js 
       else

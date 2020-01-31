@@ -23,6 +23,60 @@
       float: left;
 
     }
+    .req-friend-wrapper {
+      float: left;
+      button{
+        margin: 4px 8px 0;
+        background: no-repeat;
+        border: none;
+        color: wheat;
+        cursor: pointer;
+        font-size: 22px;
+	height: 40px;
+	position: relative;
+      }
+      .all-notifies{
+	      display: none;
+        overflow: hidden;
+            position: absolute;
+	    margin-top: -1px;
+    background: white;
+    border-radius: 7px;
+    right: 84px;
+    width: 40%;
+     hr{
+       margin: 0 auto;
+     }
+
+    .notify{
+      transition-property: background;
+      transition-delay: 2s;
+      padding: 15px;
+	    a {
+	    	font-size: 17px;
+		margin: 0 2px;
+	    }
+	    .btn-confirm{
+        color: white;
+		    background: blue;
+        float: right;
+	    }
+	    .btn-delete{
+        color: white;
+        float: right;
+		    background: red;
+	    }
+	    p{
+		    float: left;
+		    margin: 0;
+		    line-height: 40px;
+	    }
+	    hr{
+		    margin-top: 15px;
+	    }
+    }
+      }
+    }
     .notify-wrapper{
       float: left;
       button{
@@ -32,6 +86,7 @@
     color: wheat;
     cursor: pointer;
     font-size: 22px;
+    position: relative;
       }
     }
     input {
@@ -73,7 +128,25 @@
 .card-deck-wrapper {
       margin-top: 100px;
 }
+.arrow-up {
+  width: 0;
+  height: 0;
+  display: none;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
 
+  border-bottom: 10px solid #fff;
+}
+.p-notify {
+	position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 16px;
+    background: red;
+    line-height: 20px;
+    padding: 0 3px;
+    border-radius: 4px;
+}
 .card-grid {
     .card {
       border: none;
@@ -292,7 +365,7 @@ button:focus{
 }
 .active {
 	color: #4098D7;
-        background: #F0F4F8;
+  background: #9FB3C8;
 }
 .small-avatar{
 	float: left;
@@ -512,7 +585,9 @@ button:focus{
     to   { opacity: 1; }
 }
 
-/* Opera < 12.1 */
+/* Og me around
+
+pera < 12.1 */
 @-o-keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }

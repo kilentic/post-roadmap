@@ -18,7 +18,17 @@
           <% end %>
         <% end  %>
 
-        <button class="btn"><%= fa_icon "user-plus" %> Add friend</button>
+        <% if current_user != @user %>
+          <% if @isReqFriend %>
+            <%= render 'req_friends/respone', user: @user %>
+          <% end %>
+          <% if @isResFriend %>
+            <%= render 'req_friends/requested', user: @user %>
+          <% end %>
+          <% if !@isReqFriend && !@isResFriend %>
+            <%= render 'req_friends/add_friend', user: @user %>
+          <% end %>
+        <% end %>
       </div>
 
       <div class="information">

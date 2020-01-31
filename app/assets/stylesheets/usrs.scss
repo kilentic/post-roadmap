@@ -44,6 +44,19 @@
     z-index: 2;
     border-radius: 7px;
     padding: 19px;
+    .dd-req-fri{
+      width: 90%;
+      display: none;
+    margin-top: -3px;
+      position: absolute;
+    background: buttonface;
+    hr{
+      margin: 0;
+    }
+    button{
+      width: 97%;
+    }
+    }
     .btn{
       margin: 5px;
       background: buttonface;
@@ -74,6 +87,7 @@
 
       }
     }
+
     @media only screen and (device-width: 726px),
 only screen and (max-width:726px){
       .detail-wrap{

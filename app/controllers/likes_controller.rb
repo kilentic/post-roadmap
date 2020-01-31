@@ -12,6 +12,8 @@ class LikesController < ApplicationController
         @liked.destroy
         format.js
       end
+      @like.like_post_comment_broadcast(@post.likes.count, @like.duty_type, @post.id)
+
     end
   end
 

@@ -4,9 +4,9 @@ class PostsController < ApplicationController
    @post = Post.new
    @comment = Comment.new
    @like = Like.new
-   @followers = current_user.followers
-   @followers.push(current_user)
-   @posts = Post.where(user: [@followers]).order(created_at: :desc).page params[:page]
+   followers = current_user.followers.pluck(:id)
+   followers.push(current_user.id)
+   @posts = Post.where(user: followers).order(created_at: :desc).page params[:page]
    
 #   @posts = @posts = Post.paginate(page: params[:page])
   end
@@ -33,8 +33,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.new message_params
     respond_to do |format|
       if @post.save
-        @comment = Comment.new
-        @like = Like.new
+        @post.broadcast_post current_user
         format.js
       else
         format.js

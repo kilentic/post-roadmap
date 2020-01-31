@@ -5,6 +5,8 @@ class UsrsController < ApplicationController
     @like = Like.new
     @comment = Comment.new
     @isFollow = Follow.find_by follower_id: @user, followee_id: current_user
+    @isReqFriend = ReqFriend.find_by res_user_id: current_user, req_user_id: @user
+    @isResFriend = ReqFriend.find_by req_user_id: current_user, res_user_id: @user
   end
 
   def edit
