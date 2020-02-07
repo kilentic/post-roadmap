@@ -1,0 +1,8 @@
+<div class="dropdown-content search-users-result show">
+  <% users.each do |user|  %>
+    <%= link_to usr_path(user) do %>
+      <%= image_tag user.image, class: "small-avatar" %>
+      <span> <%= user.name %> </span>
+    <% end %>
+  <% end %>
+</div>

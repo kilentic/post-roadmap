@@ -1,7 +1,7 @@
 class FollowsController < ApplicationController
   def create
     @follower = User.find_by id: params[:format]
-    current_user.followers << @follower
+    Follow.where(followee: current_user, follower: @follower).first_or_create
   end
 
   def destroy

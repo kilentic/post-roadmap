@@ -5,7 +5,8 @@ class PostBroadcastJob < ApplicationJob
     s_post.user.followees.each do |follower|
       PostChannel.broadcast_to(
         follower,
-        render_with_signed_in_user(follower, s_post)
+        #render_with_signed_in_user(follower, s_post)
+        PostsController.render(partial: 'posts/postb', locals: {post: s_post, current_usr: follower})
       )
     end
   end

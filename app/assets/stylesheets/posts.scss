@@ -18,10 +18,105 @@
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
+
+    .search-user-wrap {
+      position: relative;
+      margin-top: 6px;
+
+      .search-users-result {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        display: none;
+        border-radius: 10px;
+        position: absolute;
+        background: white;
+        width: 80%;
+        padding: 5px 11px;
+
+        a{
+          border-bottom: 1px gray solid;
+          padding: 5px 0;
+          display: block;
+          width: 100%
+        }
+
+        a:hover{
+          background: gray;
+          span {
+            color: white;
+          }
+        }
+
+        span {
+          margin-left: 8px;
+          line-height: 38px;
+          color: gray;
+          font-size: 20px;
+          font-weight: bold;
+    }
+      }
+    }
     
     .dropdown-wrapper{
       float: left;
 
+    }
+    .message-box-wrap{
+      float: left;
+      button{
+        margin: 4px 0px 0;
+    background: no-repeat;
+    border: none;
+    color: wheat;
+    cursor: pointer;
+    font-size: 22px;
+    position: relative;
+      }
+      .all-messages {
+        overflow: auto;
+        max-height: 500px;
+        display: none;
+    position: absolute;
+    margin-top: -1px;
+    background: white;
+    border-radius: 7px;
+    right: 84px;
+    width: 40%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+    p:first-child{
+      text-align: center;
+    margin-top: 10px;
+    margin-bottom: 0;
+    }
+    a{
+      display: grid;
+    grid-template-columns: 73px auto;
+    width: 100%;
+    border-bottom: 1px gray solid;
+
+    .small-avatar{
+      max-width: 50px;
+      margin: 10px;
+    }
+
+    .name-mess{
+      margin-top: 9px;
+
+      h5{
+        margin-bottom: 0;
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      p{
+        color: gray;
+      }
+    }
+    
+
+
+    }
+      }
     }
     .req-friend-wrapper {
       float: left;

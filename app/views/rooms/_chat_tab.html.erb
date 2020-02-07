@@ -1,0 +1,28 @@
+<div class="chat-tab room_<%=@room.id %>" tabindex=1 data-icon="<%= receiver.id %>" id="chat-tab-user-<%= receiver.id %> " style="left: <%= rand(80) %>%">
+    <div class="chat-tab-header">
+      <span><%= receiver.name %></span>
+
+        <button class="close-chat-tab">
+          <%= fa_icon "times" %>
+        </button>
+        <button class="hide-chat-tab">
+          <%= fa_icon "minus" %>
+        </button>
+    </div>
+    <div class="chat-messages-wrap">
+      <% messages.each do |message| %>
+        <% if message.user == current_user %>
+          <%= render 'sen_message', message: message %>
+        <% else %>
+          <%= render 'rec_message', message: message %>
+        <% end %>
+      <% end %>
+
+    </div>
+    <div class="chat-tab-footer">
+      <%= form_for Message.new,:url => chats_path(), remote: true do |f| %>
+        <%= f.hidden_field :room_id, value:@room.id %>
+        <%= f.text_field :content, autocomplete:"off", placeholder:"Write a message..." %>
+      <% end %>
+    </div>
+</div>

@@ -26,6 +26,24 @@ class User < ApplicationRecord
   has_many :friend_users, foreign_key: :current_id, class_name: 'Friend'
   has_many :friends, through: :friend_users
 
+  has_many :messages
+
+  has_many :room_users
+  has_many :usr_rooms, through: :room_users, source: :room
+
+# has_many :conversations
+# has_many :co_rooms, through: :conversations, source: :room
+
+# has_many :senders, foreign_key: :receive_id, class_name: 'Conversation'
+# has_many :sends, through: :senders, source: :receive
+
+# has_many :receivers, foreign_key: :send_id, class_name: 'Conversation'
+# has_many :receives, through: :receivers, source: :send
+
+  scope :search_user, -> (name) do
+    where("name LIKE ?", "%#{name.strip}%")
+  end
+
   def self.new_with_session params, session
     super.tap do |user|
       if data = session["devise.facebook_data"] &&
@@ -46,12 +64,23 @@ class User < ApplicationRecord
 
 
   def broadcast_send_req_friend res_user
-    isSend = true
-    NotifyReqFriendJob.perform_later self, res_user, isSend
+    action = "send-req"
+    NotifyReqFriendJob.perform_later self, res_user, action
   end
 
   def broadcast_delete_req_friend res_user
-    isSend = false
-    NotifyReqFriendJob.perform_later self, res_user, isSend
+    action = "delete-req"
+    NotifyReqFriendJob.perform_later self, res_user, action
   end
+
+  def broadcast_accept_friend res_user
+    action = "accept-friend"
+    NotifyReqFriendJob.perform_later self, res_user, action
+  end
+
+  def broadcast_unfriend user
+    action = "unfriend"
+    NotifyReqFriendJob.perform_later self, user, action
+  end
+
 end

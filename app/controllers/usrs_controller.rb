@@ -26,6 +26,10 @@ class UsrsController < ApplicationController
     end
   end
 
+  def search
+    @users_result = User.search_user params[:usr_search][:name]
+  end
+
   private
   def user_params
     params.require(:user).permit(:birthday, :gender, :phone, :address)

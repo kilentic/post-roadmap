@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_20_145010) do
+ActiveRecord::Schema.define(version: 2020_02_03_085052) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "post_id"
@@ -22,11 +22,21 @@ ActiveRecord::Schema.define(version: 2020_01_20_145010) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "conversations", force: :cascade do |t|
+    t.integer "room_id"
+    t.integer "send_id"
+    t.integer "receive_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_conversations_on_room_id"
+  end
+
   create_table "follows", force: :cascade do |t|
     t.string "follower_id"
     t.string "followee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["follower_id", "followee_id"], name: "index_follows_on_follower_id_and_followee_id", unique: true
   end
 
   create_table "friends", force: :cascade do |t|
@@ -34,6 +44,7 @@ ActiveRecord::Schema.define(version: 2020_01_20_145010) do
     t.integer "friend_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["current_id", "friend_id"], name: "index_friends_on_current_id_and_friend_id", unique: true
   end
 
   create_table "identities", force: :cascade do |t|
@@ -54,6 +65,16 @@ ActiveRecord::Schema.define(version: 2020_01_20_145010) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.string "content"
+    t.integer "room_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "message"
     t.datetime "created_at", null: false
@@ -66,6 +87,21 @@ ActiveRecord::Schema.define(version: 2020_01_20_145010) do
     t.integer "req_user_id"
     t.integer "res_user_id"
     t.boolean "seen", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "room_users", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_room_users_on_room_id"
+    t.index ["user_id"], name: "index_room_users_on_user_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -84,7 +120,7 @@ ActiveRecord::Schema.define(version: 2020_01_20_145010) do
     t.string "gender"
     t.string "address"
     t.integer "phone"
-    t.text "image", default: "avatar2.jpg"
+    t.text "image", default: "avatar-male-default.jpg"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false

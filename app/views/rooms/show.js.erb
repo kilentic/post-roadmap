@@ -1,0 +1,10 @@
+var a = $('.room_<%= @room.id %>');
+if(a.length == 1){
+  a.removeClass("hidden");
+  $("#user-<%= @receiver.id %>").removeClass("show");
+}else if(a.length == 0){
+  $('.chat-icons').append('<%= j render 'icon_chat_tab', user: @receiver, room: @room %>');
+  $('.chat-tabs-wrap').append('<%= j render 'chat_tab', receiver: @receiver, messages: @messages  %>');
+  $('.room_<%= @room.id %>  .chat-messages-wrap').animate({ scrollTop:$(".room_<%= @room.id %> .chat-messages-wrap")[0].scrollHeight });
+}
+$('.all-messages').removeClass("show");

@@ -25,3 +25,153 @@ body{
 .add-margin{
   margin: 7% 30%;
 }
+.chat-tab:focus-within{
+  border: 1px blue solid;
+}
+.chat-tab{
+      position: fixed;
+    top: 10px;
+    z-index: 6;
+    width: 300px;
+    height: 348px;
+    border: 1px gray solid;
+    border-radius: 4px;
+    overflow: hidden;
+    
+    .chat-tab-header {
+      background: gray;
+      padding: 2px 5px;
+      color: white;
+
+      button{
+        background: none;
+        border: none;
+        color: white;
+        float: right;
+      }
+    }
+    .chat-tab-footer{
+      input{
+        width: 100%;
+      }
+    }
+    .chat-messages-wrap {
+      height: 288px;
+      padding-bottom: 10px;
+    background: white;
+    overflow: auto;
+    .sen-message{
+      padding: 6px 11px 0px 3px;
+      height: fit-content;
+
+      .message-content{
+
+        background: gray;
+        border-radius: 9px;
+        padding: 5px 13px;
+        color: ghostwhite;
+        line-height: 18px;
+        float: right;
+        max-width: 90%;
+
+        p{
+          margin-bottom: 0;
+        }
+    }
+
+    }
+    .rec-message{
+          display: grid;
+    grid-template-columns: 37px auto;
+    padding: 6px 11px 0px 3px;
+    height: fit-content;
+
+    .message-content{
+      background: gray;
+    border-radius: 9px;
+    padding: 5px 13px;
+    color: ghostwhite;
+    line-height: 18px;
+    max-width: 90%;
+    width: fit-content;
+    p{
+      margin-bottom: 0;
+    }
+    }
+
+    .small-avatar{
+      max-width: 35px;
+    }
+    }
+    }
+
+}
+ .chats {
+    max-height: 400px;
+    background: #F0F4F8;
+    border: 1px gray solid;
+    border-bottom: none;
+    width: 222px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    float: right;
+    z-index: 6;
+    border-radius: 5px 0px 0px 0;
+
+    .header-chats {
+      color: white;
+      background: gray;
+
+      span{
+        line-height: 39px;
+        margin-left: 8px;
+      }
+    }
+    .rooms-list {
+      line-height: 45px;
+      padding: 7px 7px 0;
+
+      .room{
+          border-bottom: 1px gray solid;
+          margin-bottom: 5px;
+
+          a{
+            display: block;
+            color: inherit;
+          }
+          a:hover{
+            text-decoration: none;
+          }
+      }
+  }
+}
+  .chat-icons {
+    position: fixed;
+    bottom: 0;
+    right: 222px;
+    z-index: 6;
+
+    .icon-chat-notify{
+      position: relative;
+      float: right;
+
+      p{
+        position: absolute;
+        display: none;
+        color: white;
+        font-size: 30px;
+        background: red;
+        padding: 2px;
+        height: 19px;
+        line-height: 26px;
+        right: 0;
+        border-radius: 13px;
+      }
+
+      .small-avatar{
+        margin-right: 5px;
+        display: none;
+      }
+  }
+}

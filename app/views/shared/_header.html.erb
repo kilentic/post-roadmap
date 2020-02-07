@@ -1,48 +1,70 @@
 <div class="header">
-      <ul class="navb">
+    <ul class="navb">
         <%= link_to "M", "/", class:"home" %>
-        <input type="text" name="search" id="search" placeholder="Search">
-        <div class="user-setting">
-        <%= link_to image_tag(current_user.image, class:"small-avatar"), "#" %>
-        <div class="req-friend-wrapper">
-
-          <%= button_to req_friend_path(current_user), method: 'patch', remote: true, onclick: "dropdown('#show-notifies, .req-up')" do %>
-            <%= fa_icon 'users' %>
-            <% count = ReqFriend.where(res_user: current_user, seen: false).count %>
-            <div class="req-count-wrap">
-              <p class="p-notify req-count" ><%= (count >0) ? count : '' %></p>
-            </div>
-            <div class="arrow-up req-up"></div>
-          <% end %>
-          <div class="all-notifies" id="show-notifies">
-            <% current_user.req_users.each do |req_user| %>
-              <%= render 'req_friends/req_friend', user: req_user, c_user: current_user %>
-            <% end %>
-          </div>
+        <div class="search-user-wrap">
+        <%= form_for :usr_search, url: search_usrs_path(), method: 'post', remote: true do |f| %>
+          <%= f.text_field :name, placeholder: "Search", autocomplete:"off" %>
+        <% end %>
+        <div class="search-user-result-wrap">
+        
         </div>
+        </div>
+            <div class="user-setting">
+                <%= link_to image_tag(current_user.image, class:"small-avatar"), "#" %>
+                    <div class="req-friend-wrapper">
 
-        <div class="notify-wrapper">
-          <button><%= fa_icon 'bell' %>
+                        <%= button_to req_friend_path(current_user), method: 'patch', remote: true, onclick: "dropdown('#show-notifies, .req-up')" do %>
+                            <%= fa_icon 'users' %>
+                                <% count = ReqFriend.where(res_user: current_user, seen: false).count %>
+                                    <div class="req-count-wrap">
+                                        <p class="p-notify req-count">
+                                            <%= (count >0) ? count : '' %>
+                                        </p>
+                                    </div>
+                                    <div class="dropdown-content arrow-up req-up"></div>
+                                    <% end %>
+                                        <div class="dropdown-content all-notifies" id="show-notifies">
+                                            <% current_user.req_users.each do |req_user| %>
+                                                <%= render 'req_friends/req_friend', user: req_user, c_user: current_user %>
+                                                    <% end %>
+                                        </div>
+                    </div>
+
+                    <div class="message-box-wrap">
+                      <%= button_to rooms_path(), method: 'get', remote: true do %>
+            <%= fa_icon 'comments' %>
+            <div class="message-count-wrap">
+              <!---      <div class="p-notify">*</div> --->
+            </div>
+            <div class="dropdown-content arrow-up mess-up"></div>
+          <% end %>
+
+          <div class="all-messages-wrap">
+                        
+                    </div>
+                    </div>
+                    <div class="notify-wrapper">
+                        <button><%= fa_icon 'bell' %>
           <p class="p-notify">5</p>
           <div class="arrow-up">
           </div>
           </button>
-          <div class="show-notify">
+                        <div class="show-notify">
 
-          </div>
-        </div>
-                <div class="dropdown-wrapper">
-          <button type="button" class="setting-post-btn" onclick="dropdown('#dropdown-header')"><%= fa_icon "angle-down" %></button>
-          <div class="dropdown-content"  id="dropdown-header">
-          <%= link_to"/", class: "edit-btn", remote: true do %>
-            <%= fa_icon "pencil" %> Edit
-          <% end %>
-        <%= link_to  destroy_user_session_path, method: :delete, class: "del-btn" do %>
-          <%= fa_icon "sign-out" %> Sign out
-        <% end %>
-        </div>
-        </div>
-        </div>
+                        </div>
+                    </div>
+                    <div class="dropdown-wrapper">
+                        <button type="button" class="setting-post-btn" onclick="dropdown('#dropdown-header')"><%= fa_icon "angle-down" %></button>
+                        <div class="dropdown-content" id="dropdown-header">
+                            <%= link_to"/", class: "edit-btn", remote: true do %>
+                                <%= fa_icon "pencil" %> Edit
+                                    <% end %>
+                                        <%= link_to  destroy_user_session_path, method: :delete, class: "del-btn" do %>
+                                            <%= fa_icon "sign-out" %> Sign out
+                                                <% end %>
+                        </div>
+                    </div>
+            </div>
     </ul>
 
 </div>

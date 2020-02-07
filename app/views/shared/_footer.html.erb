@@ -1,0 +1,19 @@
+      <div class="chat-icons">
+    </div>
+
+
+    <div class="chats">
+        <div class="header-chats">
+          <span>Chats (<%= current_user.friends.count %>)</span>
+        </div>
+        <div class="rooms-list">
+          <% current_user.friends.each do |user| %>
+
+            <%= render partial: 'rooms/room', locals: {user: user } %>
+          <% end %>
+        </div>
+    </div>
+<div class="chat-tabs-wrap">
+
+
+</div>

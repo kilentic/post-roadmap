@@ -41,7 +41,7 @@
     </div>
     <div class="comments-wrap" id="comment-wrap-post_<%= post.id %>">
         <div class="input-comment">
-            <%= link_to image_tag(post.user.image, class:"small-avatar"), "#" %>
+            <%= link_to image_tag(current_user.image, class:"small-avatar"), "#" %>
             <%= form_for Comment.new, remote: true, :html => { :id => "new_comment_#{post.id}"} do |f| %>
               <%= f.hidden_field :post_id, value: post.id, id: "add-comment-post_#{post.id}" %>
                     <%= f.text_field :content, autocomplete:"off", placeholder:"Write a comment...", id: "comment_content_#{post.id}"  %>

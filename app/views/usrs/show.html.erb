@@ -34,6 +34,11 @@
             <% end %>
           <% end %>
         <% end %>
+        <div id="message-btn">
+          <%= link_to rooms_path(id: @user.id), remote: true, method:'post', class:'btn' do %>
+            <%= fa_icon "comments" %> Message
+          <% end %>
+        </div>
       </div>
 
       <div class="information">
@@ -53,3 +58,4 @@
     </div>
   </div>
 </div>
+<%= render "shared/footer" %>
