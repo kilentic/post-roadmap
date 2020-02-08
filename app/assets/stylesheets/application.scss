@@ -43,6 +43,22 @@ body{
       padding: 2px 5px;
       color: white;
 
+
+      .button_to{
+        background: none;
+    border: none;
+    color: white;
+    float: right;
+      }
+
+      .video-call{
+        padding: 0;
+
+        img{
+          max-width: 20px;
+        }
+      }
+
       button{
         background: none;
         border: none;

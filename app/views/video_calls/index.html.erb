@@ -1,0 +1,8 @@
+<div class="video-call-page">
+  <div id="current_user" data-cuser="<%= current_user.id %>">
+    <span> <%= current_user.id %> </span>
+  </div>
+<div id="remote-video-container"></div>
+<video id="local-video" autoplay></video>
+</div>
+<%= javascript_include_tag 'video_call_core' %>

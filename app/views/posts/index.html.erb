@@ -8,7 +8,7 @@
         <div class="card-deck-wrapper">
           <div class="new-post-input">
             <div class="ava-text">
-                  <%= image_tag current_user.image, class:"small-avatar" %>
+                  <%= link_to image_tag(current_user.image, class:"small-avatar"), usr_path(current_user) %>
                   <%= form_for(@post,  remote: true, url: posts_path(@post)) do |f| %>
                     <div class="error-wraper"></div>
                     <%= f.text_area :message, id:"new_post_textarea", placeholder: "Hi #{current_user.name}, what's your mind?" %>

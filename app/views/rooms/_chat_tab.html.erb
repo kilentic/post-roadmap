@@ -2,12 +2,17 @@
     <div class="chat-tab-header">
       <span><%= receiver.name %></span>
 
+
         <button class="close-chat-tab">
           <%= fa_icon "times" %>
         </button>
         <button class="hide-chat-tab">
           <%= fa_icon "minus" %>
         </button>
+        <%= button_to  video_calls_path(id: receiver.id), method:'post', class:"video-call" do %>
+          <%= image_tag("video-call.png") %> 
+        <% end %>
+
     </div>
     <div class="chat-messages-wrap">
       <% messages.each do |message| %>

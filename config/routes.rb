@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :friends
   resources :chats
   resources :rooms
+  resources :video_calls
   mount Sidekiq::Web, at: '/sidekiq'
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations" }
     get 'auth/:provider/callback', to: 'sessions#create'

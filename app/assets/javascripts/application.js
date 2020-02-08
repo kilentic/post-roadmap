@@ -17,6 +17,7 @@
 //= require jquery-ui
 //= require turbolinks
 //= require_tree .
+//= stub 'video_call_core'
 //= require bootstrap-sprockets
 
 function dropdown(idTag) {

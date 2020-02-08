@@ -1,7 +1,7 @@
 <div class="card" id="post_<%= post.id %>">
     <div class="card-block">
         <div class="header-post">
-                    <%= link_to image_tag(post.user.image, class:"small-avatar"), "#" %>
+                    <%= link_to image_tag(post.user.image, class:"small-avatar"), usr_path(post.user) %>
                 <div class="name-at">
                     <%= link_to post.user.name, usr_path(post.user) %>
                     <p><%= post.interval %> <%= post.unit %></p>
@@ -41,7 +41,7 @@
     </div>
     <div class="comments-wrap" id="comment-wrap-post_<%= post.id %>">
         <div class="input-comment">
-            <%= link_to image_tag(current_user.image, class:"small-avatar"), "#" %>
+            <%= link_to image_tag(current_user.image, class:"small-avatar"), usr_path(current_user) %>
             <%= form_for Comment.new, remote: true, :html => { :id => "new_comment_#{post.id}"} do |f| %>
               <%= f.hidden_field :post_id, value: post.id, id: "add-comment-post_#{post.id}" %>
                     <%= f.text_field :content, autocomplete:"off", placeholder:"Write a comment...", id: "comment_content_#{post.id}"  %>
