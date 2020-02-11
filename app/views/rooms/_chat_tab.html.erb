@@ -9,7 +9,7 @@
         <button class="hide-chat-tab">
           <%= fa_icon "minus" %>
         </button>
-        <%= button_to  video_calls_path(id: receiver.id), method:'post', class:"video-call" do %>
+        <%= link_to  video_calls_path(id: receiver.id, signal: 1), method:'post', class:"btn video-call", target: "_blank" do %>
           <%= image_tag("video-call.png") %> 
         <% end %>
 

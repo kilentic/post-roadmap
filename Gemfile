@@ -9,8 +9,7 @@ gem 'rails', '~> 5.2.3'
 gem 'devise-bootstrap-views', '~> 1.0'
 gem 'will_paginate', '~> 3.1.0'
 gem 'kaminari'
-gem 'sqlite3', '~> 1.3.6'
-gem 'pg'
+
 gem 'jquery-ui-rails'
 gem 'redis'
 gem 'redis-namespace'
@@ -56,8 +55,12 @@ gem 'jbuilder', '~> 2.5'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+group :production do
+  gem 'pg'
+end
 
 group :development, :test do
+  gem 'sqlite3', '~> 1.3.6'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end

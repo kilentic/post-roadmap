@@ -49,6 +49,9 @@ $(document).on('click', '.chat-tab', function(event) {
     $(this).css('z-index', 7);
     $(this).siblings().css("z-index", 6);
 });
+$(document).on('mouseover', '#local-video', function(event) {
+    $(this).draggable();
+});
 $(document).on('mouseover', '.chat-tab', function(event) {
     $(this).draggable({
         start: function(event, ui) {
@@ -78,6 +81,15 @@ $(document).on('click', '.icon-chat', function(event) {
     $(this).removeClass("show");
     $(this).parent().find('p').removeClass('show');
 });
+
+$(document).on('click', '.signal-video-call-content .btn-danger', function(event) {
+
+    $(this).parent().parent().parent().remove();
+})
+
+function closeSelf(caller) {
+    $(caller).parent().parent().parent().remove();
+}
 
 function cancerBtnCmt(idCmt) {
     $("#edit_comment_" + idCmt).remove();

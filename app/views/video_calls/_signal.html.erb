@@ -1,0 +1,14 @@
+<div class="signal-video-call-wrap">
+  <div class="signal-video-call-content">
+    <div>
+      <p>   <%= sender.name %> is calling you </p>
+       <%= link_to "Answer", video_calls_path(id: sender.id), onclick:"closeSelf(this);", method: 'post', class:"btn btn-success", target: "_blank" %>
+       <button class="btn btn-danger ">Cancer</button>
+
+    </div>
+   
+  </div>
+ </div>
+ <audio id="sound_effect" class="audio_player" preload="auto">
+    <source src="http://www.villagegeek.com/downloads/webwavs/alrighty.wav" type="audio/wav">
+</audio>
