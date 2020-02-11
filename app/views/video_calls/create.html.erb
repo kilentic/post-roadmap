@@ -7,7 +7,7 @@
     <p>calling to <%= @remote_user.name %></p>
   </div>
 <div id="remote-video-container"></div>
-<video id="local-video" autoplay></video>
+<video id="local-video" autoplay onmouseover="draggableVideo(this);"></video>
 <div class="control-session">
   <button onclick="handleLeaveSession()"><%= image_tag "endcall.png" %></button>
 </div>

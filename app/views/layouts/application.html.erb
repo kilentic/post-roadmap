@@ -11,7 +11,7 @@ user-scalable=no">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body onclick="clickOutSide(event);">
     <%= yield %>
   </body>
 </html>

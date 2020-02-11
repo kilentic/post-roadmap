@@ -1,12 +1,12 @@
-<div class="chat-tab room_<%=@room.id %>" tabindex=1 data-icon="<%= receiver.id %>" id="chat-tab-user-<%= receiver.id %> " style="left: <%= rand(80) %>%">
+<div class="chat-tab room_<%=@room.id %>" tabindex=1 data-icon="<%= receiver.id %>" id="chat-tab-user-<%= receiver.id %> " style="left: <%= rand(80) %>%" onmouseover="draggbleTab(this);" onclick="clickTab(this);">
     <div class="chat-tab-header">
       <span><%= receiver.name %></span>
 
 
-        <button class="close-chat-tab">
+        <button class="close-chat-tab" onclick="closeChatTab(this);">
           <%= fa_icon "times" %>
         </button>
-        <button class="hide-chat-tab">
+        <button class="hide-chat-tab" onclick="hideChatTab(this);">
           <%= fa_icon "minus" %>
         </button>
         <%= link_to  video_calls_path(id: receiver.id, signal: 1), method:'post', class:"btn video-call", target: "_blank" do %>
@@ -27,7 +27,7 @@
     <div class="chat-tab-footer">
       <%= form_for Message.new,:url => chats_path(), remote: true do |f| %>
         <%= f.hidden_field :room_id, value:@room.id %>
-        <%= f.text_field :content, autocomplete:"off", placeholder:"Write a message..." %>
+        <%= f.text_field :content, autocomplete:"off", placeholder:"Write a message...", onfocus:"focusInput(this);" %>
       <% end %>
     </div>
 </div>

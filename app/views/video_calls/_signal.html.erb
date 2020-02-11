@@ -3,7 +3,7 @@
     <div>
       <p>   <%= sender.name %> is calling you </p>
        <%= link_to "Answer", video_calls_path(id: sender.id), onclick:"closeSelf(this);", method: 'post', class:"btn btn-success", target: "_blank" %>
-       <button class="btn btn-danger ">Cancer</button>
+       <button class="btn btn-danger " onclick="closeSelf(this);">Cancer</button>
 
     </div>
    
