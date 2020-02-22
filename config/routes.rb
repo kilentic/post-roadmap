@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+# get 'notices/index'
+# patch 'notices/update'
   get 'sessions/new'
   get 'sessions/create'
   get 'sessions/destroy'
@@ -15,6 +17,7 @@ Rails.application.routes.draw do
   resources :comments
   resources :likes
   resources :usrs
+  resources :notices
   resources :follows
   resources :req_friends
   resources :friends

@@ -31,6 +31,8 @@ class User < ApplicationRecord
   has_many :room_users
   has_many :usr_rooms, through: :room_users, source: :room
 
+  has_many :notifications
+
 # has_many :conversations
 # has_many :co_rooms, through: :conversations, source: :room
 

@@ -36,7 +36,7 @@
                             <%= fa_icon "thumbs-up" %> Like(<span class="like-count"><%= post.likes.count %></span>)
                                 <% end %>
                                     <% end %>
-                                        <button onclick="showComments(<%= post.id %>)"><%= fa_icon "comment" %> Comment(<span class="comment-count"><%= post.comments.count %></span>)</button>
+                                        <button onclick="showComments(this)"><%= fa_icon "comment" %> Comment(<span class="comment-count"><%= post.comments.count %></span>)</button>
         </div>
     </div>
     <div class="comments-wrap" id="comment-wrap-post_<%= post.id %>">

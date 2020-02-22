@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  event: one
+  user: one
+  sender_id: 1
+  link: MyString
+  isSeen: false
+
+two:
+  event: two
+  user: two
+  sender_id: 1
+  link: MyString
+  isSeen: false

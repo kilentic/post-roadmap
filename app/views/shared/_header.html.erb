@@ -44,14 +44,16 @@
                     </div>
                     </div>
                     <div class="notify-wrapper">
-                        <button><%= fa_icon 'bell' %>
-                   <!---     <p class="p-notify">5</p> --->
-          <div class="arrow-up">
+                      <%= button_to notices_path(),method:'get', onclick:"dropdown('#show-notifyy');", remote: true do %>
+                        <%= fa_icon 'bell' %>
+                      <% notificationsCount = current_user.notifications.where(isSeen: false).count %>
+                      <p class="p-notify"><%= (notificationsCount === 0) ? '' : notificationsCount %></p> 
+          <div class="dropdown-content arrow-up">
           </div>
-          </button>
-                        <div class="show-notify">
+        <% end %>
+                  <div class="show-notify dropdown-content" id="show-notifyy">
 
-                        </div>
+                  </div>
                     </div>
                     <div class="dropdown-wrapper">
                         <button type="button" class="setting-post-btn" onclick="dropdown('#dropdown-header')"><%= fa_icon "angle-down" %></button>

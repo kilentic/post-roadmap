@@ -1,0 +1,8 @@
+$('body').prepend('<%= j render 'show' %>');
+<% if @anc %>
+    $("#comment-post_<%= @post.id %> #<%= @anc %>").addClass('active');
+    $("#comment-post_<%= @post.id %>").animate({
+      scrollTop: $("#<%= @anc %>").offset().top - $("#comment-post_<%= @post.id %>").offset().top + $("#<%= @anc %>").scrollTop() - $("#comment-post_<%= @post.id %>").height() / 2
+    });
+<% end %>
+  

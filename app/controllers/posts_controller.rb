@@ -58,6 +58,16 @@ class PostsController < ApplicationController
       end
     end
   end
+
+  def show
+    @anc = params[:anc]
+    @post = Post.find_by id: params[:id]
+    respond_to do |format|
+      format.js
+      format.html
+    end
+
+  end
   
 private
   def message_params

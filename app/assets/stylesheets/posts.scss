@@ -1,6 +1,9 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.space {
+  height: 100px;
+}
 .header {
   margin: 0 7% 0 7%;
     padding: 5px;
@@ -61,6 +64,71 @@
     .dropdown-wrapper{
       float: left;
 
+    }
+    .notify-wrapper{
+      .show-notify {
+        position: absolute;
+        display: none;
+        margin-top: -1px;
+        background: white;
+        border-radius: 7px;
+        right: 0px;
+        height: fit-content;
+        width: 40%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+         
+        
+	.notify-title{
+		margin-bottom: 0;
+    		font-size: 19px;
+    		margin-left: 10px;
+    		color: slategrey;
+    		font-weight: bold;
+	}
+        p{
+              margin-bottom: 0;
+    font-size: 14px;
+    color: slategray;
+        }
+        hr{
+          margin:0;
+        }
+        .all-notifications {
+          max-height: 62vh;
+          overflow: auto;
+
+        
+        a:hover{
+          background: lightgray;
+        }
+        a{
+          display: grid;
+    grid-template-columns: 73px auto;
+    width: 100%;
+    border-bottom: 1px lightgray solid;
+      
+        .small-avatar{
+          max-width: 45px;
+    margin: 10px;
+        }
+        
+        .content{
+          padding: 16px 0;
+          .sender{
+            font-weight: bold;
+          }
+
+          span{
+            margin: 0;
+            font-size: 18px;
+            color: black;
+          }
+        }
+        }
+
+      }
+      }
     }
     .message-box-wrap{
       float: left;
@@ -223,7 +291,6 @@
     }
 }
 .card-deck-wrapper {
-      margin-top: 100px;
 }
 .arrow-up {
   width: 0;
@@ -253,7 +320,7 @@
 
 		    float: left;
     background: gainsboro;
-    max-width: 87%;
+    max-width: 83%;
     padding: 5px 10px;
     border-radius: 12px;
     margin-left: 1%;
@@ -502,9 +569,25 @@ button:focus{
 .show{
   display: block !important;
 }
+.comment-wrap::-webkit-scrollbar{
+  width: 10px;
+  border-radius: 10px;
+}
+.comment-wrap::-webkit-scrollbar-thumb {
+  background-color: cadetblue;
+  border-radius: 22px;
+}
+.comment-wrap::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
 .comment-wrap{
+  max-height: 40vh;
+    overflow: auto;
 	margin: 15px 0;
   .commenti{
+    padding: 5px 0 0 4px;
+    border-radius: 7px;
     margin-bottom: 10px;
     
     .like-time-comment-wrap{
@@ -592,10 +675,13 @@ button:focus{
 }
 .dropdown-wrapper {
 				float: right;
+				margin-right: 2%;
+				position: relative;
 
         .setting-post-btn {
               cursor: pointer;
               background: none;
+	      margin-left: 0;
               border: none;
               font-size: 22px;
               font-weight: 400;
@@ -615,6 +701,7 @@ button:focus{
 					padding: 10px 0;
     					border-radius: 7px;
 					width: fit-content;
+					right: 4px;
 					position: absolute;
 					z-index: 1;
 					-webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
@@ -622,11 +709,16 @@ button:focus{
 				        -ms-animation: fadein 1s; /* Internet Explorer */
 				        -o-animation: fadein 1s; /* Opera < 12.1 */
 					a{
-						display: block;
+						display: grid;
+    						grid-template-columns: 19px auto;
 					    	width: 100%;
     						padding: 3px 20px;
    	 					color: black;
 						transition: 0.5s ease-in-out;
+
+						i{
+							line-height: 24px;
+						}
 					}
 
 					.edit-btn:hover{
@@ -688,4 +780,16 @@ pera < 12.1 */
 @-o-keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
+}
+.all-notifications::-webkit-scrollbar{
+  width: 10px;
+  border-radius: 10px;
+}
+.all-notifications::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-radius: 22px;
+}
+.all-notifications::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_03_085052) do
+ActiveRecord::Schema.define(version: 2020_02_17_032312) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "post_id"
@@ -29,6 +29,13 @@ ActiveRecord::Schema.define(version: 2020_02_03_085052) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_conversations_on_room_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "category"
+    t.string "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "follows", force: :cascade do |t|
@@ -73,6 +80,18 @@ ActiveRecord::Schema.define(version: 2020_02_03_085052) do
     t.datetime "updated_at", null: false
     t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "user_id"
+    t.integer "sender_id"
+    t.string "link"
+    t.boolean "isSeen", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_notifications_on_event_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "posts", force: :cascade do |t|
