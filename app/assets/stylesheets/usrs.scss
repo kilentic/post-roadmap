@@ -2,6 +2,124 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.card-bg {
+  height: 100vh;
+    position: fixed;
+    width: 100%;
+    z-index: 13;
+    background: rgba(0,0,0, 0.5);
+
+    .card-wrapper {
+      padding-bottom: 10px;
+      background: white;
+    margin: 4% auto auto;
+    border-radius: 6px;
+
+      .card-titl{
+            font-weight: bold;
+    background: gray;
+    margin-bottom: 10px;
+    padding: 5px 12px;
+    font-size: 20px;
+    border-radius: 0 0 10px 10px;
+    color: white;
+
+    button{
+      float: right;
+    border-radius: 53px;
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+    }
+    button:focus{
+      outline: none;
+    }
+      }
+      .card-bd{
+
+        .avatar-return{
+          text-align: center;
+          margin: 10px auto;
+
+          img{
+                max-width: 80%;
+                max-height: 60vh;
+                display: none;
+          }
+        }
+        .file-input-avatar::-webkit-file-upload-button {
+          visibility: hidden;
+        }
+        .file-input-avatar::before {
+  content: 'Select some files';
+  display: inline-block;
+  background: linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+        }
+        textarea{
+          width: 96%;
+    border: none;
+    border-bottom: 1px gray solid;
+    margin: 0 2%;
+        }
+
+        textarea:focus{
+          outline: none;
+        }
+
+        .upload-avatar-btn-wrap{
+          display: grid;
+    grid-template-columns: auto 90px;
+
+        input[type="submit"]{
+              background: #94C843;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+        }
+
+        .new-avatar-wrap{
+          position: relative;
+          width: fit-content;
+
+          .file-input-avatar{
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                background: #39D2B4;
+                width: 200px;
+          }
+          .new-avatar-trigger{
+                background: #39D2B4;
+                margin-bottom: 0;
+                width: 200px;
+                cursor: pointer;
+                height: 57px;
+                color: white;
+                font-size: 19px;
+                font-weight: 700;
+                padding: 15px;
+                border-radius: 4px;
+          }
+        }
+      }
+      }
+    }
+
+}
 .bg-wrap {
     height: 447px;
     overflow: hidden;
@@ -15,10 +133,33 @@
               top: 149px;
     left: 40%;
       position: absolute;
+      .avatar-wrap{
+        border-radius: 136px;
+      overflow: hidden;
+       position: relative;
       img {
               max-width: 235px;
-       border-radius: 140px;
       }
+      button:hover{
+        background: rgba(0, 0, 0, 0.6);
+        cursor: pointer;
+      }
+      button:focus{
+        outline: none;
+      }
+      button{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        display: none;
+        left: 0;
+        height: 30%;
+        background: rgba(0, 0, 0, 0.3);
+        font-size: 33px;
+        border: none;
+        color: white;
+      }
+    }
       .name {
             font-size: 30px;
     font-weight: bold;

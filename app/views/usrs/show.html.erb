@@ -4,7 +4,14 @@
     <%= image_tag "bg3.jpg" %>
   </div>
     <div class="avatar-show">
-      <%= image_tag @user.image %>
+      <div class="avatar-wrap" onmouseover="showUploadAvatarBtn(this);" onmouseleave="hideUploadAvatarBtn(this);">
+        <%= image_tag @user.avatar.attached? ? @user.avatar : "avatar-male-default.jpg" %>
+        <% if @user === current_user %>
+          <%= button_to  upload_avatar_path(), method: 'get', remote: true do %>
+            <%= fa_icon 'camera' %>
+          <% end %>
+        <% end %>
+      </div>
       <p class="name"><%= @user.name %></p>
     </div>
   <div class="detail-wrap">

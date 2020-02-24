@@ -20,14 +20,23 @@
 //= stub 'video_call_core'
 //= require bootstrap-sprockets
 
-function updateStateNotify(idNotify, caller) {
-    $(caller).remove();
+function selfShow(caller){
+  $(caller).addClass("show");
+}
+function selfHide(caller){
+  $(caller).removeClass("show");
+}
+function updateStateNotify(idNotify) {
     $.ajax({
         url: "/notices/" + idNotify,
         type: 'PATCH',
         dataType: 'script',
         success: function(data) {}
     })
+}
+
+function removeElement(caller) {
+    $(caller).remove();
 }
 
 function closeNewNotify(caller) {

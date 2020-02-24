@@ -1,4 +1,4 @@
-<div class="new-notify" onmouseleave="updateStateNotify(<%= notification.id %>, this)" id="new-notify_<%= notification.id %>">
+<div class="new-notify" onmouseleave="removeElement(this);" onmouseover="updateStateNotify(<%= notification.id %>)" id="new-notify_<%= notification.id %>">
   <div class="new-notify-header">
     <button onclick="closeNewNotify(this);"><%= fa_icon "times" %></button>
   </div>

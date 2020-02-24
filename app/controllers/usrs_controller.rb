@@ -28,6 +28,15 @@ class UsrsController < ApplicationController
     end
   end
 
+  def upload_avatar
+     
+
+  end
+
+  def update_avatar
+    
+  end
+
   def search
     @users_result = User.search_user params[:usr_search][:name]
   end

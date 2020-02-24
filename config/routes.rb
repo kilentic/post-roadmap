@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   post '/video_call/broadcast_signaling', to: 'video_calls#broadcast_signal', as:'signal_video_calls'
   post '/video_call/answer', to: 'video_calls#answer', as:'answer_video_calls'
 
-
+  get '/upload_avatar', to: 'usrs#upload_avatar', as: 'upload_avatar'
   root 'posts#index' 
   resources :posts
   resources :comments
