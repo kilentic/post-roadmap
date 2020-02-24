@@ -21,7 +21,7 @@
 //= require bootstrap-sprockets
 
 function updateStateNotify(idNotify, caller) {
-  $(caller).remove();
+    $(caller).remove();
     $.ajax({
         url: "/notices/" + idNotify,
         type: 'PATCH',
