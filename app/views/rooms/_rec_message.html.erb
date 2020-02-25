@@ -1,5 +1,5 @@
 <div class="rec-message">
-        <%= image_tag(message.user.image, class:"small-avatar") %>
+        <%= render( partial: 'shared/avatar', locals: {user: message.user}) %>
         <div class="message-content">
           <p><%= message.content %></p>
         </div>

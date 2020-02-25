@@ -5,7 +5,7 @@
     </div>
 
     <div class="card-bd">
-      <%= form_for :usr, url: "#" do |f| %>
+      <%= form_for :update_avatar, url: update_avatar_path(), method:'post' do |f| %>
         <%= f.text_area :message, placeholder:"Add a description..." %>
         <div class="avatar-return">
           <img id="img_prev" src="#" alt="your image" />
@@ -15,7 +15,7 @@
         <%= f.file_field :avatar, class:"file-input-avatar", id: "new-avatar", onchange:"readURL(this);" %>
         <%= f.label "Select a image...", for:"new-avatar", class:"new-avatar-trigger" %>
       </div>
-      <%= f.submit "Upload", class: ""%>
+      <%= f.submit "Upload", class: "submit-upload-avatar", disabled: true %>
         </div>
       <% end %>
 

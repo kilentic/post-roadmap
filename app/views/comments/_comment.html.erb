@@ -1,5 +1,5 @@
 <div class="commenti" id="cmt_<%= comment.id %>">
-    <%= link_to image_tag(comment.user.image, class:"small-avatar"), usr_path(comment.user) %>
+    <%= link_to render( partial: 'shared/avatar', locals: {user: comment.user}), usr_path(comment.user) %>
         <div class="comment">
             <h6>
                 <%= link_to comment.user.name, usr_path(comment.user) %>

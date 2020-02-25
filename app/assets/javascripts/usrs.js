@@ -17,6 +17,10 @@ function readURL(input) {
         reader.onload = function(e) {
             $('#img_prev')
                 .attr('src', e.target.result).css('display', 'inline-block');
+            $('.submit-upload-avatar').attr('disabled', false).css({
+                background: '#94C843',
+                cursor: 'pointer'
+            });
         };
 
         reader.readAsDataURL(input.files[0]);

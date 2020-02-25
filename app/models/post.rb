@@ -4,10 +4,10 @@ class Post < ApplicationRecord
   attribute :unit
   after_initialize :interval_cal
 
+  has_many_attached :images
   has_many :likes, as: :duty
   belongs_to :user
   has_many :comments,  dependent: :destroy
-  validates :message, presence: true
   paginates_per 50
 
   def interval_cal

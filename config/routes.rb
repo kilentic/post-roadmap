@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   post '/video_call/answer', to: 'video_calls#answer', as:'answer_video_calls'
 
   get '/upload_avatar', to: 'usrs#upload_avatar', as: 'upload_avatar'
+  post '/update_avatar', to: 'usrs#update_avatar', as: 'update_avatar'
+  
   root 'posts#index' 
   resources :posts
   resources :comments

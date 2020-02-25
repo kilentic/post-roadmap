@@ -10,7 +10,7 @@
         </div>
         </div>
             <div class="user-setting">
-                <%= link_to image_tag(current_user.image, class:"small-avatar"), usr_path(current_user)%>
+                <%= link_to image_tag(current_user.avatar.attached? ? current_user.avatar : "avatar-male-default.jpg", class:"small-avatar"), usr_path(current_user)%>
                     <div class="req-friend-wrapper">
 
                         <%= button_to req_friend_path(current_user), method: 'patch', remote: true, onclick: "dropdown('#show-notifies, .req-up')" do %>

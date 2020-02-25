@@ -20,12 +20,15 @@
 //= stub 'video_call_core'
 //= require bootstrap-sprockets
 
-function selfShow(caller){
-  $(caller).addClass("show");
+
+function selfShow(caller) {
+    $(caller).addClass("show");
 }
-function selfHide(caller){
-  $(caller).removeClass("show");
+
+function selfHide(caller) {
+    $(caller).removeClass("show");
 }
+
 function updateStateNotify(idNotify) {
     $.ajax({
         url: "/notices/" + idNotify,
@@ -160,7 +163,7 @@ function clickOutSidePost(event, caller) {
 }
 
 function showPostBtn(caller) {
-    if ($("#new_post_textarea").val().trim().length > 0) {
+    if ($("#new_post_textarea").val().trim().length > 0 || caller.files) {
         $(".new_post input[type='submit']").addClass("show");
     } else {
         $(".new_post input[type='submit']").removeClass("show");

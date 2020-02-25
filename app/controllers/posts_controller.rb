@@ -32,7 +32,7 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.new message_params
     respond_to do |format|
-      if @post.save
+      if @post.save!
         @post.broadcast_post current_user
         format.js
       else
@@ -71,6 +71,6 @@ class PostsController < ApplicationController
   
 private
   def message_params
-    params.require(:post).permit(:message)
+    params.require(:post).permit(:message, images: [])
   end
 end

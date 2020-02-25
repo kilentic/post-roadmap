@@ -34,7 +34,8 @@ class UsrsController < ApplicationController
   end
 
   def update_avatar
-    
+    current_user.avatar.attach(avatar_params[:avatar])
+    redirect_to request.referrer
   end
 
   def search
@@ -44,6 +45,13 @@ class UsrsController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:birthday, :gender, :phone, :address)
-    
+  end
+
+  def message_params
+    params.require(:update_avatar).permit(:message)
+  end
+
+  def avatar_params
+    params.require(:update_avatar).permit(:avatar)
   end
 end
