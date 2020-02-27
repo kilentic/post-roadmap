@@ -35,6 +35,12 @@ class UsrsController < ApplicationController
 
   def update_avatar
     current_user.avatar.attach(avatar_params[:avatar])
+    x = params[:x]
+    y = params[:y]
+    h = params[:h]
+    w = params[:w]
+
+    current_user.urlAvatar(x, y, h, w)
     redirect_to request.referrer
   end
 

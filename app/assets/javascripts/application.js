@@ -19,7 +19,7 @@
 //= require_tree .
 //= stub 'video_call_core'
 //= require bootstrap-sprockets
-
+//= require jquery.Jcrop
 
 function selfShow(caller) {
     $(caller).addClass("show");

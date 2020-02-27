@@ -4,7 +4,7 @@
   </div>
   <%= link_to notification.link, remote: true, class:"notify-content" do %>
       <% sender = User.find_by id: notification.sender_id %>
-        <%=  image_tag(sender.image, class:"small-avatar seen") %>
+        <%=  image_tag(sender.avatar.attached? ? sender.avatar : "avatar-male-default.jpg", class:"small-avatar seen") %>
             <div class="content seen">
             <span class="sender seen"><%= sender.name %></span><span class="seen"> <%= notification.event.content %></span>
             <p><%= notification.interval %> <%= notification.unit %></p>

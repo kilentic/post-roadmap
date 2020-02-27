@@ -5,7 +5,17 @@
 <%= render "shared/header" %>
 <div class="space"></div>
 <div class="wrapper-nonposition container">
-  <div></div>
+  <div>
+  <div class="other-user-wrapper">
+    <div class="other-user-card">
+      <div class="title">People you may know</div>
+      <div class="other-user-content">
+        <%= render partial: 'shared/suggest_users' %>
+      </div>
+    </div>
+  </div>
+  </div>
+
     <div>
         <div class="card-deck-wrapper">
           <div class="new-post-input">

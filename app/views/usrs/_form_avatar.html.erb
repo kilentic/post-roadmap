@@ -13,9 +13,16 @@
         <div class="upload-avatar-btn-wrap">
       <div class="new-avatar-wrap">
         <%= f.file_field :avatar, class:"file-input-avatar", id: "new-avatar", onchange:"readURL(this);" %>
+        <%= f.hidden_field :x, id:'x', name:'x' %>
+        <%= f.hidden_field :y, id:'y', name:'y' %>
+        <%= f.hidden_field :w, id:'w', name:'w' %>
+        <%= f.hidden_field :h, id:'h', name:'h' %>
         <%= f.label "Select a image...", for:"new-avatar", class:"new-avatar-trigger" %>
       </div>
+      <div>
+      <button class="btn btn-cancer" onclick="removeElement('.card-bg');">Cancer</button>
       <%= f.submit "Upload", class: "submit-upload-avatar", disabled: true %>
+      </div>
         </div>
       <% end %>
 

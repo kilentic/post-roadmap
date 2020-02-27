@@ -24,6 +24,39 @@
         <p class="card-text">
             <%= post.message %>
         </p>
+                <div class="post-gallery-wrap">
+
+          <% if post.images.attached? && post.images.count > 1 %>
+
+            <div id="images-post_<%= post.id %>" class="carousel slide" data-ride="carousel">
+
+                <div class="carousel-inner">
+
+                  <% post.images.each_with_index do |image, index| %>
+                    <div class="carousel-item <%= (index == 0) ? 'active' : '' %>">
+                        <%= image_tag image %>
+
+                    </div>
+                  <% end %>
+
+
+
+                </div>
+                <a class="carousel-control-prev" href="#images-post_<%= post.id %>" data-slide="prev" onclick="$('#images-post_<%= post.id %>').carousel('prev')">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+                <a class="carousel-control-next" href="#images-post_<%= post.id %>" data-slide="next" onclick="$('#images-post_<%= post.id %>').carousel('next')">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+            </div>
+      <% elsif post.images.count == 1 %>
+        <%= image_tag Rails.application.routes.url_helpers.rails_blob_path(post.images[0], only_path: true), class:"an-image" %>
+
+      <% end %>
+      <button class="show-full-image-btn" onclick="toggleClassName('max-height-100', '.post-gallery-wrap', '#post_<%= post.id %>');" >
+          <%= fa_icon "angle-down" %>
+        </button>
+        </div>
         <div class="form-edit">
         </div>
 

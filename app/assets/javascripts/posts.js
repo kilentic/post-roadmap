@@ -1,5 +1,12 @@
+function toggleClassName(toggleClassName, className, id) {
+    $(id).find(className).toggleClass(toggleClassName);
+}
+
+function removeById(id) {
+    $(id).remove();
+}
+
 function previewImages(input) {
-    console.log(input.files)
 
     var $preview = $('#preview-images');
     if (input.files) $.each(input.files, readAndPreview);

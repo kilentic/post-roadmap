@@ -6,7 +6,7 @@
    <% receiver = User.find_by id: conversation.receive_id %>
 
  <%= link_to room_path(id: conversation.room.id), remote: true do %>
-    <%=  image_tag(receiver.image, class:"small-avatar") %>
+   <%=  render partial: 'shared/avatar', locals: {user: receiver} %>
     <div class="name-mess">
       <h5><%= receiver.name %></h5>
       <p><%= conversation.room.messages.last.content %></p>

@@ -56,7 +56,7 @@
         <%= image_tag post.images[0], class:"an-image" %>
         
       <% end %>
-      <button class="show-full-image-btn">
+      <button class="show-full-image-btn" onclick="toggleClassName('max-height-100', '.post-gallery-wrap', '#post_<%= post.id %>');" >
           <%= fa_icon "angle-down" %>
         </button>
         </div>

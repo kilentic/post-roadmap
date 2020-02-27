@@ -3,5 +3,6 @@
 <% else %>
     $(".card-grid").prepend('<%= j render 'post', post: @post %>');
     $(".new_post input[type='submit']").removeClass("show");
-    $("#new_post_textarea").val("");
+    $("#new_post_textarea, #post-photo").val("");
+    $("#preview-images").empty();
 <% end %>

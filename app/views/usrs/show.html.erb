@@ -5,7 +5,7 @@
   </div>
     <div class="avatar-show">
       <div class="avatar-wrap" onmouseover="showUploadAvatarBtn(this);" onmouseleave="hideUploadAvatarBtn(this);">
-        <%= image_tag @user.avatar.attached? ? @user.avatar : "avatar-male-default.jpg" %>
+        <%= image_tag @user.image %>
         <% if @user === current_user %>
           <%= button_to  upload_avatar_path(), method: 'get', remote: true do %>
             <%= fa_icon 'camera' %>
