@@ -16,7 +16,7 @@
     </div>
   <div class="detail-wrap">
     <div class="information-wrap">
-      <div class="action-association">
+      <div class="action-association common-card">
         <% if @user != current_user %>
           <% if @isFollow %>
             <%= render 'follows/following', follower: @user %>
@@ -48,7 +48,7 @@
         </div>
       </div>
 
-      <div class="information">
+      <div class="information common-card">
         <div class="infos">
           <%= render "info", user: @user %>
 
@@ -59,6 +59,16 @@
           <% end %>
         </div>
       </div>
+      <div class="friend-list-wrapper common-card">
+        <div class="header-common-card">
+          <span><a href="#">Friends</a></span>
+          <span class="mutual-count"><%= @user.get_friend_count %> <%= (@user.get_mutual_friends(current_user).nil? || @user === current_user) ? "" : "(#{@user.get_mutual_friends(current_user).count} Mutual)" %></span>
+        </div>
+        <div class="friend-list">
+          <%= render partial: "friend_list", locals: {users: @user.get_friend_list } %>
+        </div>
+      </div>
+       
     </div>
     <div class="card-grid posts-user">
       <%= render @posts %> 

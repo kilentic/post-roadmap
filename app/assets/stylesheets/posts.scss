@@ -81,11 +81,17 @@
     
     .navb {
           display: grid;
-    grid-template-columns: 20% 60% 20%;
+    grid-template-columns: 15% 50% 35%;
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
 
+    .user-setting{
+	    .setting-wrapper{
+		    float: right;
+		    width: 207px;
+	    }
+    }
     .search-user-wrap {
       position: relative;
       margin-top: 6px;
@@ -323,7 +329,7 @@
       }
     }
     input {
-      width: 80%;
+      width: 100%;
     margin: 0 auto;
     border: none;
     border-radius: 36px;

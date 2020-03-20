@@ -91,4 +91,17 @@ class User < ApplicationRecord
     NotifyReqFriendJob.perform_later self, user, action
   end
 
+  def get_friend_count
+    self.friends.count
+  end
+
+
+  def get_friend_list
+    self.friends.limit(9)
+  end
+
+  def get_mutual_friends user
+    self.friends.where(id: user.friends.pluck(:id))
+  end
+
 end

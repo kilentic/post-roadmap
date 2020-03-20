@@ -2,6 +2,31 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+
+.common-card{
+    border-radius: 7px;
+    padding: 11px;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+    .header-common-card{
+      .mutual-count{
+        font-size: 15px;
+        color: gray;
+        font-weight: 100;
+      }
+      span{
+        font-weight: bold;
+        font-size: 18px;
+
+        a{
+          color: black;
+        }
+      }
+
+    }
+}
+
 .card-bg {
   height: 100vh;
     position: fixed;
@@ -191,13 +216,41 @@
       .information-wrap {
     margin-top: 26px;
         position: relative;
+        .friend-list-wrapper{
+          margin-top: 10px;
+          
+          .friend-list{
+            display: grid;
+            margin-top: 5px;
+            grid-template-columns: 33% 33% 33%;
+          
+
+
+          .a-friend{
+            text-decoration: none;
+            width: 95%;
+
+
+            p{
+              font-size: 15px;
+              line-height: 18px;
+              margin-bottom: 5px;
+              text-align: center;
+              color: cadetblue;
+            }
+
+            img{
+              max-width: 100%;
+              width: 100%;
+              border-radius: 8px;
+            }
+            
+          }
+        }
+        }
         .action-association {
               height: fit-content;
-            background: #fff;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 2;
-    border-radius: 7px;
-    padding: 19px;
     .dd-req-fri{
       width: 90%;
       display: none;
@@ -223,11 +276,7 @@
           grid-template-columns: 70% 30%;
           margin-top: 10px;
         height: fit-content;
-            background: #fff;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     z-index: 2;
-    border-radius: 7px;
-    padding: 19px;
     .btn-edit-info-wrap{
       text-align: right;
     }

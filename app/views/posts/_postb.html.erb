@@ -34,7 +34,7 @@
 
                   <% post.images.each_with_index do |image, index| %>
                     <div class="carousel-item <%= (index == 0) ? 'active' : '' %>">
-                        <%= image_tag image %>
+                        <%= image_tag Rails.application.routes.url_helpers.rails_blob_path(image, only_path: true) %>
 
                     </div>
                   <% end %>
