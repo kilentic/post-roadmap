@@ -12,4 +12,8 @@ class Conversation < ApplicationRecord
     create(room_id: room_id, send_id: send_id, receive_id: receive_id)
     create(room_id: room_id, send_id: receive_id, receive_id: send_id)
   end
+
+  scope :find_conversation_by_room_id_and_send_id, ->(room_id, send_id) do
+     find_by room_id: room_id, send_id: send_id
+  end
 end

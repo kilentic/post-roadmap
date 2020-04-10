@@ -6,6 +6,18 @@ class Notification < ApplicationRecord
   attribute :unit
   after_initialize :interval_cal
 
+  scope :create_notification, -> (event_id, user_id, sender_id, post_id = -1 ,\
+                                  comment_id = -1) do
+    if comment_id != -1
+      link = "/posts/#{post_id}?anc=cmt_#{comment_id}"
+    else
+      link = "/posts/#{post_id}"
+    end
+
+    create event_id: event_id, user_id: user_id, sender_id: sender_id, \
+      link: link
+  end
+
 
   def interval_cal
     if self.created_at
@@ -16,7 +28,8 @@ class Notification < ApplicationRecord
       elsif (interval_seconds/1.days).floor == 1
         self.interval = 1
         self.unit = "day"
-      elsif (interval_seconds/1.hours).floor >= 1 && (interval_seconds/1.hours).floor < 24
+      elsif (interval_seconds/1.hours).floor >= 1 && \
+        (interval_seconds/1.hours).floor < 24
         self.interval = (interval_seconds/1.hours).floor
         if (interval_seconds/1.hours).floor == 1
           self.unit = "hour"

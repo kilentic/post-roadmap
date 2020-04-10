@@ -62,7 +62,7 @@
       <div class="friend-list-wrapper common-card">
         <div class="header-common-card">
           <span><a href="#">Friends</a></span>
-          <span class="mutual-count"><%= @user.get_friend_count %> <%= (@user.get_mutual_friends(current_user).nil? || @user === current_user) ? "" : "(#{@user.get_mutual_friends(current_user).count} Mutual)" %></span>
+          <span class="mutual-count"><%= @user.get_friend_count %> <%= (@user.get_mutual_friends(current_user).count == 0 || @user === current_user) ? "" : "(#{@user.get_mutual_friends(current_user).count} Mutual)" %></span>
         </div>
         <div class="friend-list">
           <%= render partial: "friend_list", locals: {users: @user.get_friend_list } %>
@@ -70,8 +70,8 @@
       </div>
        
     </div>
-    <div class="card-grid posts-user">
-      <%= render @posts %> 
+    <div class="card-grid posts-user <%= @posts.count === 0 ? 'no-posts-vailable' : '' %> ">
+      <%= (@posts.count === 0) ? "No posts available" : (render @posts) %> 
     </div>
   </div>
 </div>

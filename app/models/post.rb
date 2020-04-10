@@ -41,4 +41,8 @@ class Post < ApplicationRecord
     PostBroadcastJob.perform_later self, user
   end
 
+  def get_posts_from_users users, page
+    where(user: users).order(created_at: :desc).page page
+  end
+
 end

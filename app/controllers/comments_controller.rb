@@ -8,7 +8,8 @@ class CommentsController < ApplicationController
         @like = Like.new
         post = @comment.post
         if post.user != current_user
-          @notification = post.user.notifications.create event_id:3, sender_id: current_user.id, link:"/posts/#{post.id}?anc=cmt_#{@comment.id}"
+          @notification = Notificatio.create_notification 3, user.id,\
+            current_user.id, post.id, @comment.id
           count = post.user.notifications.where(isSeen: false).count
           BroadcastNoticeJob.perform_later post.user, count, @notification
         end
