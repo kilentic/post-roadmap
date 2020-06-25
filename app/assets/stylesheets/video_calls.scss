@@ -38,13 +38,19 @@
     width: 100%;
     text-align: center;
 
+    #video-icon-img-id{
+      max-width: 45px;
+    }
+
       button{
         background: none;
-    border: none;
     border-radius: 69px;
     width: 63px;
     padding: 0;
     height: 63px;
+    border: 2px solid white;
+    font-size: 28px;
+    color: white;
 
 
         img {

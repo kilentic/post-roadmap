@@ -84,6 +84,10 @@
     }
 }
 }
+.display-grid-auto{
+  display: grid;
+  grid-template-columns: auto auto;
+}
 .card-show-bg {
       position: fixed;
     z-index: 11;
@@ -93,8 +97,7 @@
 
     .card{
           margin: 45px 200px auto 200px;
-          display: grid;
-          grid-template-columns: auto auto;
+          
           max-height: 80vh;
 
           .post-gallery-wrap{
@@ -166,10 +169,8 @@ body{
       .video-call{
 	float: right;
         padding: 0;
+        color: white;
 
-        img{
-          max-width: 20px;
-        }
       }
 
       button{
@@ -188,6 +189,7 @@ body{
       height: 288px;
       padding-bottom: 10px;
     background: white;
+    width: 100%;
     overflow: auto;
     .sen-message{
       padding: 6px 11px 0px 3px;

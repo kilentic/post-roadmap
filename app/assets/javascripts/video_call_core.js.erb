@@ -2,6 +2,7 @@
 const JOIN_ROOM = "JOIN_ROOM";
 const EXCHANGE = "EXCHANGE";
 const REMOVE_USER = "REMOVE_USER";
+const ON_OFF_VIDEO = "ON_OFF_VIDEO";
 
 // DOM Elements
 let currentUser;
@@ -33,8 +34,7 @@ document.onreadystatechange = () => {
       })
       .then(stream => {
         localstream = stream;
-        localVideo.srcObject = stream;
-        localVideo.muted = true;
+
       })
       .catch(logError);
   }
@@ -42,6 +42,37 @@ document.onreadystatechange = () => {
     handleJoinSession();
   }
 };
+
+function stopVideo(){
+  localstream.getVideoTracks()[0].enabled = !(localstream.getVideoTracks()[0].enabled);
+  //
+}
+
+function toggleVideo(){
+  tgVideoImg = $("#video-icon-img-id");
+
+  localstream.getVideoTracks()[0].enabled = !(localstream.getVideoTracks()[0].enabled);
+  //
+  localstream.getVideoTracks()[0].enabled ? tgVideoImg.attr("src", "video_icon.png") : tgVideoImg.attr("src", "not_video_icon.png");
+  //
+  localVideo.srcObject = localstream;
+  //
+  localVideo.muted = true;
+  //
+  broadcastData({
+    type: ON_OFF_VIDEO,
+     stt: localstream.getVideoTracks()[0].enabled 
+    //stt: false
+
+  });
+}
+
+function toggleAudio(){
+  tgAudio = $("#toggleAudio");
+   localstream.getAudioTracks()[0].enabled = !(localstream.getAudioTracks()[0].enabled);
+  localstream.getAudioTracks()[0].enabled ? tgAudio.html("<i class='fa fa-microphone'></i>") : 
+    tgAudio.html("<i class='fa fa-microphone-slash'></i>");
+}
 
 const handleJoinSession = async () => {
   App.session = await App.cable.subscriptions.create("VideoCallChannel", {
@@ -62,6 +93,10 @@ const handleJoinSession = async () => {
           return exchange(data);
         case REMOVE_USER:
           return removeUser(data);
+        case ON_OFF_VIDEO:
+          data.stt ? $(".remote-video").removeClass("hidden") : $(".remote-video").addClass("hidden") ;
+          console.log("status "+data.stts);
+          return;
         default:
           return;
       }
@@ -70,6 +105,11 @@ const handleJoinSession = async () => {
 };
 
 const handleLeaveSession = () => {
+  fetch("/video_call/cancel?id="+remoteUser, {
+    method: "get",
+    headers: { "content-type": "application/json" }
+  }).then(
+  );
   for (user in pcPeers) {
     pcPeers[user].close();
   }
@@ -104,6 +144,7 @@ $('#close_window').on('click', function(){
 const createPC = (userId, isOffer) => {
   let pc = new RTCPeerConnection(ice);
   pcPeers[userId] = pc;
+  stopVideo();
   pc.addStream(localstream);
 
   isOffer &&
@@ -134,9 +175,22 @@ const createPC = (userId, isOffer) => {
     const element = document.createElement("video");
     element.id = `remoteVideoContainer+${userId}`;
     element.autoplay = "autoplay";
-    element.className = "remote-video";
+    element.className = "remote-video hidden";
     element.srcObject = event.stream;
     remoteVideoContainer.appendChild(element);
+
+
+    var time = $("#wait-to-call");
+    var insertZero = n => n < 10 ? "0"+n : ""+n,
+    displayTime = n => time.html(insertZero(~~(n/3600)%3600) + ":" +
+                                             insertZero(~~(n/60)%60) + ":" +
+                                             insertZero(n%60));
+                        /* : time.textContent = "IGNITION..!", */
+    countDownFrom = n => (displayTime(n), setTimeout(_ =>  sid = countDownFrom(++n), 1000))
+    countDownFrom(0);
+    tutut = $("#signal-ringtone")[0];
+    tutut.pause();
+    tutut.currentTime = 0;
   };
 
   pc.oniceconnectionstatechange = event => {

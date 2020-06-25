@@ -3,7 +3,7 @@ class VideoCallsController < ApplicationController
   def create
     @remote_user = User.find_by id: params[:id]
     if(params[:signal])
-      broadcast_signal @remote_user
+      broadcast_signal @remote_user, "SIGNAL"
     end
   end
   def show
@@ -14,11 +14,17 @@ class VideoCallsController < ApplicationController
   end
   def answer
   end
-  def broadcast_signal remote_user
+  def cancel
+    @remote_user = User.find_by id: params[:id]
+    broadcast_signal @remote_user, "CANCEL"
+  end
+  def broadcast_signal remote_user, type
 
     VideoCallSignalChannel.broadcast_to(
       remote_user,
-      html: VideoCallsController.render(partial: 'video_calls/signal', locals: {receiver: remote_user, sender: current_user})
+      html: VideoCallsController.render(partial: 'video_calls/signal', locals: {receiver: remote_user, sender: current_user}),
+      type: type
+
     )
   end
   def broadcast_data
@@ -33,6 +39,6 @@ class VideoCallsController < ApplicationController
 
   private
     def session_params
-      params.permit(:type, :from, :to, :sdp, :candidate)
+      params.permit(:type, :from, :to, :sdp, :candidate, :stt)
     end
 end

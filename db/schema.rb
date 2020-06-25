@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 2020_02_24_083311) do
   end
 
   create_table "follows", force: :cascade do |t|
-    t.string "follower_id"
-    t.string "followee_id"
+    t.integer "follower_id"
+    t.integer "followee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["follower_id", "followee_id"], name: "index_follows_on_follower_id_and_followee_id", unique: true
@@ -160,19 +160,15 @@ ActiveRecord::Schema.define(version: 2020_02_24_083311) do
     t.string "gender"
     t.string "address"
     t.integer "phone"
+    t.string "email"
+    t.string "password_digest"
+    t.string "remember_digest"
     t.text "image", default: "avatar-male-default.jpg"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
     t.string "provider"
     t.string "uid"
     t.string "name"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
 end

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post '/video_call/broadcast_data', to: 'video_calls#broadcast_data', as:'data_video_calls'
   post '/video_call/broadcast_signaling', to: 'video_calls#broadcast_signal', as:'signal_video_calls'
   post '/video_call/answer', to: 'video_calls#answer', as:'answer_video_calls'
+  get'/video_call/cancel', to: 'video_calls#cancel', as: 'cancel_video_calls'
 
   get '/upload_avatar', to: 'usrs#upload_avatar', as: 'upload_avatar'
   post '/update_avatar', to: 'usrs#update_avatar', as: 'update_avatar'
@@ -26,13 +27,12 @@ Rails.application.routes.draw do
   resources :chats
   resources :rooms
   resources :video_calls
-  mount Sidekiq::Web, at: '/sidekiq'
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations" }
-    get 'auth/:provider/callback', to: 'sessions#create'
-
-  devise_scope :user do
-    post '/signup' => 'registrations#create', :as => :user_cregistration
+  namespace :auth do
+    resources :signups, only: [:new, :create]
+    resources :sessions, only: [:new, :create, :destroy]
   end
+  mount Sidekiq::Web, at: '/sidekiq'
+
 
   # Serve websocket cable requests in-process
   mount ActionCable.server => '/cable'

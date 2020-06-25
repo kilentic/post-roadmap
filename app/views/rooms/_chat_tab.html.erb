@@ -9,9 +9,7 @@
         <button class="hide-chat-tab" onclick="hideChatTab(this);">
           <%= fa_icon "minus" %>
         </button>
-        <%= link_to  video_calls_path(id: receiver.id, signal: 1), method:'post', class:"btn video-call", target: "_blank" do %>
-          <%= image_tag("video-call.png") %> 
-        <% end %>
+        <%= link_to fa_icon("phone"),  video_calls_path(id: receiver.id, signal: 1), method:'post', class:"btn video-call", target: "_blank" %>
 
     </div>
     <div class="chat-messages-wrap">

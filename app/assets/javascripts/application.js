@@ -132,7 +132,22 @@ function showChatTabFromIcon(caller) {
 //  })
 
 function closeSelf(caller) {
+    $("#signal-ringtone-reciever")[0].pause();
+    $("#signal-ringtone-reciever")[0].currentTime = 0;
+
     $(caller).parent().parent().parent().remove();
+}
+var videoWindow = null;
+function openWindow(url){
+  console.log(url);
+videoWindow = window.open(url,  '_blank');
+}
+
+function closeWindow(){
+  if(videoWindow!=null){
+	videoWindow.close();}
+
+  
 }
 
 function cancerBtnCmt(idCmt) {

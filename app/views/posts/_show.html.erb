@@ -1,5 +1,5 @@
 <div class="card-show-bg card-grid" onclick="clickOutSidePost(event, this)">
-  <div class="card" id="post_<%= @post.id %>">
+  <div class="card <%= "display-grid-auto" if @post.images.count != 0 %>" id="post_<%= @post.id %>">
             <div class="post-gallery-wrap">
 
           <% if @post.images.attached? && @post.images.count > 1 %>

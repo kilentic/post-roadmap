@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!
+# before_action :authenticate_user!
+      before_action :logged_in_user
+
   def index
    @post = Post.new
    @comment = Comment.new
@@ -75,4 +77,11 @@ private
   def message_params
     params.require(:post).permit(:message, images: [])
   end
+  def logged_in_user
+    unless logged_in?
+      store_location
+      redirect_to new_auth_session_url
+    end
+  end
+
 end

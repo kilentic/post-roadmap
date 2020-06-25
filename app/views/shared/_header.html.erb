@@ -2,6 +2,7 @@
     <ul class="navb">
         <%= link_to "M", "/", class:"home" %>
         <div class="search-user-wrap">
+          <!--  search_usrs_path() -->
         <%= form_for :usr_search, url: search_usrs_path(), method: 'post', remote: true do |f| %>
           <%= f.text_field :name, placeholder: "Search", autocomplete:"off" %>
         <% end %>
@@ -11,7 +12,8 @@
         </div>
             <div class="user-setting">
               <div class="setting-wrapper">
-                <%= link_to image_tag(current_user.image, class:"small-avatar"), usr_path(current_user)%>
+                <!-- usr_path(current_user) -->
+                <%= link_to image_tag(current_user.image, class:"small-avatar"), "#"%>
                     <div class="req-friend-wrapper">
 
                         <%= button_to req_friend_path(current_user), method: 'patch', remote: true, onclick: "dropdown('#show-notifies, .req-up')" do %>
@@ -32,7 +34,8 @@
                     </div>
 
                     <div class="message-box-wrap">
-                      <%= button_to rooms_path(), method: 'get', remote: true do %>
+                      <!-- rooms_path() -->
+                      <%= button_to rooms_path(),  method: 'get', remote: true do %>
             <%= fa_icon 'comments' %>
             <div class="message-count-wrap">
               <!---      <div class="p-notify">*</div> --->
@@ -59,10 +62,10 @@
                     <div class="dropdown-wrapper">
                         <button type="button" class="setting-post-btn" onclick="dropdown('#dropdown-header')"><%= fa_icon "angle-down" %></button>
                         <div class="dropdown-content" id="dropdown-header">
-                            <%= link_to"/", class: "edit-btn", remote: true do %>
+                           <!-- <%= link_to"/", class: "edit-btn", remote: true do %>
                                 <%= fa_icon "pencil" %> Edit
-                                    <% end %>
-                                        <%= link_to  destroy_user_session_path, method: :delete, class: "del-btn" do %>
+                              <% end %> -->
+                                        <%= link_to  auth_session_path(current_user), method: :delete, class: "del-btn" do %>
                                             <%= fa_icon "sign-out" %> Sign out
                                                 <% end %>
                         </div>

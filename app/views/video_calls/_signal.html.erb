@@ -3,12 +3,10 @@
     <div>
       <p>   <%= sender.name %> is calling you </p>
        <%= link_to "Answer", video_calls_path(id: sender.id), onclick:"closeSelf(this);", method: 'post', class:"btn btn-success", target: "_blank" %>
-       <button class="btn btn-danger " onclick="closeSelf(this);">Cancer</button>
+       <%= link_to "Cancel", cancel_video_calls_path(id: sender.id), class:"btn btn-danger ", onclick:"closeSelf(this);", remote: true, id: "cancel-btn-id" %>
 
     </div>
    
   </div>
  </div>
- <audio id="sound_effect" class="audio_player" preload="auto">
-    <source src="http://www.villagegeek.com/downloads/webwavs/alrighty.wav" type="audio/wav">
-</audio>
+

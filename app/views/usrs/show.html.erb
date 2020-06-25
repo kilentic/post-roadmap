@@ -7,6 +7,7 @@
       <div class="avatar-wrap" onmouseover="showUploadAvatarBtn(this);" onmouseleave="hideUploadAvatarBtn(this);">
         <%= image_tag @user.image %>
         <% if @user === current_user %>
+          <%#if false %>
           <%= button_to  upload_avatar_path(), method: 'get', remote: true do %>
             <%= fa_icon 'camera' %>
           <% end %>
@@ -41,7 +42,7 @@
             <% end %>
           <% end %>
         <% end %>
-        <div id="message-btn">
+        <div id="message-btn" style="display: none;">
           <%= link_to rooms_path(id: @user.id), remote: true, method:'post', class:'btn' do %>
             <%= fa_icon "comments" %> Message
           <% end %>
