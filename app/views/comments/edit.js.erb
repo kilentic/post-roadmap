@@ -1,0 +1,2 @@
+$("#cmt_<%= @comment.id %> .content").addClass("hidden");
+$("#cmt_<%= @comment.id %> .comment").append("<%= j render 'form', comment: @comment %>");

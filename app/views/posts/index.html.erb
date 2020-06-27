@@ -1,0 +1,53 @@
+
+
+<!-- <div class="card-e" style="display: none;">
+</div> -->
+<%= render "shared/header" %>
+<div class="space"></div>
+<div class="wrapper-nonposition container">
+  <div>
+  <div class="other-user-wrapper">
+    <div class="other-user-card">
+      <div class="title">People you may know</div>
+      <div class="other-user-content">
+        <%= render partial: 'shared/suggest_users' %>
+      </div>
+    </div>
+  </div>
+  </div>
+
+    <div>
+        <div class="card-deck-wrapper">
+          <div class="new-post-input">
+            <div class="ava-text">
+              <!-- usr_path(current_user) -->
+                  <%= link_to render(partial: 'shared/avatar', locals: {user: current_user}), usr_path(current_user) %>
+                  <%= form_for(@post,  remote: true, url: posts_path(@post)) do |f| %>
+                    <div class="error-wraper"></div>
+                    <%= f.text_area :message, id:"new_post_textarea", placeholder: "Hi #{current_user.name}, what's your mind?", onkeyup:"showPostBtn(this);" %>
+                    <div class="result-upload-image" id="preview-images"></div>
+                    <!--  <hr> -->
+                    
+                    <div class="option" >
+                    <%= f.file_field :images, id:'post-photo', multiple: true, onchange:"previewImages(this); showPostBtn(this);" %>
+                    <%= f.label  for:'post-photo' do %>
+                      <%= fa_icon('image')%> Photo
+                    <% end %>
+                    </div>
+                    <%= f.submit "Post", class:"btn btn-primary" %>
+                  <% end %>
+
+
+            </div>
+          </div>
+            <div class=" card-grid">
+                <%= render @posts %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="paginator">
+    <%= paginate @posts, remote: true %>
+</div>
+<%= render "shared/footer" %>

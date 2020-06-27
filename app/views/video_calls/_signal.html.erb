@@ -1,0 +1,12 @@
+<div class="signal-video-call-wrap">
+  <div class="signal-video-call-content">
+    <div>
+      <p>   <%= sender.name %> is calling you </p>
+       <%= link_to "Answer", video_calls_path(id: sender.id), onclick:"closeSelf(this);", method: 'post', class:"btn btn-success", target: "_blank" %>
+       <%= link_to "Cancel", cancel_video_calls_path(id: sender.id), class:"btn btn-danger ", onclick:"closeSelf(this);", remote: true, id: "cancel-btn-id" %>
+
+    </div>
+   
+  </div>
+ </div>
+

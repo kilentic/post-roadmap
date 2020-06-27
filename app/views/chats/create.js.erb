@@ -1,0 +1,4 @@
+var height = $(".room_<%= @message.room.id %> .message-content")
+$('.room_<%= @message.room.id %> .chat-messages-wrap').append('<%= j render 'rooms/sen_message', message: @message %>');
+$('.room_<%= @message.room.id %>  .chat-messages-wrap').animate({ scrollTop:$(".room_<%= @message.room.id %> .chat-messages-wrap")[0].scrollHeight }, 1000);
+$('.room_<%= @message.room.id %> input[type="text"]').val("");

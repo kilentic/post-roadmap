@@ -1,0 +1,2 @@
+$(".card-grid").html("<%= j render(@posts) %>");
+$("#paginator").html("<%= j paginate(@posts, remote: true) %>");

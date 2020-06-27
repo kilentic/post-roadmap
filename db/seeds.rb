@@ -5,3 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Event.create category: "like_comment", content: "reacted to your comment"
+Event.create category: "like_post", content: "reacted to your post"
+Event.create category: "comment_post", content: "commented on your post"

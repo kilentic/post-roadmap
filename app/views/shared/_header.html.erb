@@ -1,0 +1,77 @@
+<div class="header">
+    <ul class="navb">
+        <%= link_to "M", "/", class:"home" %>
+        <div class="search-user-wrap">
+          <!--  search_usrs_path() -->
+        <%= form_for :usr_search, url: search_usrs_path(), method: 'post', remote: true do |f| %>
+          <%= f.text_field :name, placeholder: "Search", autocomplete:"off" %>
+        <% end %>
+        <div class="search-user-result-wrap">
+        
+        </div>
+        </div>
+            <div class="user-setting">
+              <div class="setting-wrapper">
+                <!-- usr_path(current_user) -->
+                <%= link_to image_tag(current_user.image, class:"small-avatar"), "#"%>
+                    <div class="req-friend-wrapper">
+
+                        <%= button_to req_friend_path(current_user), method: 'patch', remote: true, onclick: "dropdown('#show-notifies, .req-up')" do %>
+                            <%= fa_icon 'users' %>
+                                <% count = ReqFriend.where(res_user: current_user, seen: false).count %>
+                                    <div class="req-count-wrap">
+                                        <p class="p-notify req-count">
+                                            <%= (count >0) ? count : '' %>
+                                        </p>
+                                    </div>
+                                    <div class="dropdown-content arrow-up req-up"></div>
+                                    <% end %>
+                                        <div class="dropdown-content all-notifies" id="show-notifies">
+                                            <% current_user.req_users.each do |req_user| %>
+                                                <%= render 'req_friends/req_friend', user: req_user, c_user: current_user %>
+                                                    <% end %>
+                                        </div>
+                    </div>
+
+                    <div class="message-box-wrap">
+                      <!-- rooms_path() -->
+                      <%= button_to rooms_path(),  method: 'get', remote: true do %>
+            <%= fa_icon 'comments' %>
+            <div class="message-count-wrap">
+              <!---      <div class="p-notify">*</div> --->
+            </div>
+            <div class="dropdown-content arrow-up mess-up"></div>
+          <% end %>
+
+          <div class="all-messages-wrap">
+                        
+                    </div>
+                    </div>
+                    <div class="notify-wrapper">
+                      <%= button_to notices_path(),method:'get', onclick:"dropdown('#show-notifyy');", remote: true do %>
+                        <%= fa_icon 'bell' %>
+                      <% notificationsCount = current_user.notifications.where(isSeen: false).count %>
+                      <p class="p-notify"><%= (notificationsCount === 0) ? '' : notificationsCount %></p> 
+          <div class="dropdown-content arrow-up">
+          </div>
+        <% end %>
+                  <div class="show-notify dropdown-content" id="show-notifyy">
+
+                  </div>
+                    </div>
+                    <div class="dropdown-wrapper">
+                        <button type="button" class="setting-post-btn" onclick="dropdown('#dropdown-header')"><%= fa_icon "angle-down" %></button>
+                        <div class="dropdown-content" id="dropdown-header">
+                           <!-- <%= link_to"/", class: "edit-btn", remote: true do %>
+                                <%= fa_icon "pencil" %> Edit
+                              <% end %> -->
+                                        <%= link_to  auth_session_path(current_user), method: :delete, class: "del-btn" do %>
+                                            <%= fa_icon "sign-out" %> Sign out
+                                                <% end %>
+                        </div>
+                    </div>
+              </div>
+            </div>
+    </ul>
+
+</div>

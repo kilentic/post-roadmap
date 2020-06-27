@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PostRoadmap</title>
+    <title>Social Networking</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,
+user-scalable=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -9,7 +11,9 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body onclick="clickOutSide(event);">
+    <div class="new-notify-wrapper"></div>
     <%= yield %>
+     <%= audio_tag("calling_you.mp3", loop: true,  id:"signal-ringtone-reciever") %>
   </body>
 </html>

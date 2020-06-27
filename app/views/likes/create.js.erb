@@ -1,0 +1,9 @@
+$("#like_<%= @like.duty_type %>_<%= @like.duty.id %> .like-count").html('<%= @post.likes.count %>');
+if (<%= !@liked %>){
+
+  $("#like_<%= @like.duty_type %>_<%= @like.duty.id %>").addClass("active-btn");
+}
+else{
+  $("#like_<%= @like.duty_type %>_<%= @like.duty.id %>").removeClass("active-btn");
+}
+

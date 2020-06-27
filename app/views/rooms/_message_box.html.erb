@@ -1,0 +1,16 @@
+<div class="dropdown-content all-messages show" id="show-meessages">
+  <p>Messages</p>
+  <hr>
+  
+ <% conversations.each do |conversation| %>
+   <% receiver = User.find_by id: conversation.receive_id %>
+
+ <%= link_to room_path(id: conversation.room.id), remote: true do %>
+   <%=  render partial: 'shared/avatar', locals: {user: receiver} %>
+    <div class="name-mess">
+      <h5><%= receiver.name %></h5>
+      <p><%= conversation.room.messages.last.content %></p>
+    </div>
+  <% end %>
+<% end %>
+</div>

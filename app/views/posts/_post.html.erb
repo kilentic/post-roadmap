@@ -1,0 +1,98 @@
+<div class="card" id="post_<%= post.id %>">
+    <div class="card-block">
+      <div class="header-post">
+        <!-- usr_path(post.user) -->
+            <%= link_to render(partial: 'shared/avatar', locals: {user: post.user}), usr_path(post.user)  %>
+                <div class="name-at">
+                  <!-- usr_path(post.user) -->
+                    <%= link_to post.user.name, usr_path(post.user) %>
+                        <p>
+                            <%= post.interval %>
+                                <%= post.unit %>
+                        </p>
+                </div>
+                <% if post.user == current_user %>
+                    <div class="dropdown-wrapper">
+                        <button type="button" class="setting-post-btn" onclick="settingDropdown(<%= post.id %>)"><%= fa_icon "angle-down" %></button>
+                        <div class="dropdown-content" id="setting-post-dropdown_<%= post.id %>">
+                            <%= link_to edit_post_path(post), class: "edit-btn", remote: true do %>
+                                <%= fa_icon "pencil" %> Edit
+                                    <% end %>
+                                        <%= link_to post_path(post), method: "delete", remote: true, class: "del-btn", data: { confirm: "Are you sure?" } do %>
+                                            <%= fa_icon "trash" %> Delete
+                                                <% end %>
+                        </div>
+                    </div>
+                    <% end %>
+                        <div class="clearfix"></div>
+        </div>
+        <p class="card-text">
+            <%= post.message %>
+        </p>
+        <div class="post-gallery-wrap">
+
+          <% if post.images.attached? && post.images.count > 1 %>
+
+            <div id="images-post_<%= post.id %>" class="carousel slide" data-ride="carousel">
+
+                <div class="carousel-inner">
+
+                  <% post.images.each_with_index do |image, index| %>
+                    <div class="carousel-item <%= (index == 0) ? 'active' : '' %>">
+                        <%= image_tag image %>
+
+                    </div>
+                  <% end %>
+
+                  
+
+                </div>
+                <a class="carousel-control-prev" href="#images-post_<%= post.id %>" data-slide="prev" onclick="$('#images-post_<%= post.id %>').carousel('prev')">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+                <a class="carousel-control-next" href="#images-post_<%= post.id %>" data-slide="next" onclick="$('#images-post_<%= post.id %>').carousel('next')">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+            </div>
+      <% elsif post.images.count == 1 %>
+        <%= image_tag post.images[0], class:"an-image" %>
+        
+      <% end %>
+      <button class="show-full-image-btn" onclick="toggleClassName('max-height-100', '.post-gallery-wrap', '#post_<%= post.id %>');" >
+          <%= fa_icon "angle-down" %>
+        </button>
+        </div>
+        <div class="form-edit">
+        </div>
+
+        <hr>
+        <div class="react-wrap">
+            <%= form_for Like.new, remote:true, :html => {:id => "new_like_#{post.id}"} do |f| %>
+                <%= f.hidden_field :duty_type, value:"Post", id: "like-duty-post_#{post.id}" %>
+                    <%= f.hidden_field :duty_id, value: post.id, id:"duty-post_#{post.id}" %>
+                        <%= f.button :submit, id:"like_Post_#{post.id}", remote:true, class:(post.likes.find_by(user_id:current_user.id)?"active-btn":"") do %>
+                            <%= fa_icon "thumbs-up" %> Like(<span class="like-count"><%= post.likes.count %></span>)
+                                <% end %>
+                                    <% end %>
+                                        <button onclick="showComments(this)"><%= fa_icon "comment" %> Comment(<span class="comment-count"><%= post.comments.count %></span>)</button>
+        </div>
+    </div>
+    <div class="comments-wrap" id="comment-wrap-post_<%= post.id %>">
+      <div class="input-comment">
+        <!-- usr_path(current_user) -->
+            <%= link_to render( partial: 'shared/avatar', locals: {user: current_user}), usr_path(current_user) %>
+                <%= form_for Comment.new, remote: true, :html => { :id => "new_comment_#{post.id}"} do |f| %>
+                    <%= f.hidden_field :post_id, value: post.id, id: "add-comment-post_#{post.id}" %>
+                        <%= f.text_field :content, autocomplete:"off", placeholder:"Write a comment...", id: "comment_content_#{post.id}"  %>
+                            <% end %>
+                                <div class="clearfix"></div>
+
+        </div>
+        <hr>
+        <div class="comment-wrap" id="comment-post_<%= post.id %>">
+
+            <%= render  post.comments.order(created_at: :desc), current_user_id: current_user.id %>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,8 @@
+$("#notify-req_<%= @user.id %>").remove();
+$("#follow-link").replaceWith('<%= j render "follows/following", follower: @user %>');
+$("#ass-fr-btn").replaceWith('<%= j render 'unfriend', user: @user %>')
+if (<%= @req_count %> > 0){
+  $(".req-count-wrap").html("<p class='p-notify req-count' ><%= @req_count %></p>");
+}else{
+  $(".req-count-wrap").html("");
+}
