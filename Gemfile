@@ -26,7 +26,7 @@ gem 'twitter'
 gem 'instagram'
 gem 'dotenv-rails', groups: [:development, :test]
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 #font-awesome
 gem "font-awesome-rails", github: "bokmann/font-awesome-rails", branch: "master"
 # Use SCSS for stylesheets
