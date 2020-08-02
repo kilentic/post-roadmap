@@ -116,8 +116,6 @@ class User < ApplicationRecord
 
   def urlAvatar x, y, h, w
     self.update(image: Rails.application.routes.url_helpers.rails_representation_url(self.avatar.variant(combine_options:{:crop=>"#{w}x#{h}+#{x}+#{y}"}).processed, only_path: true))
-
-    byebug
   end
 
   def self.from_omniauth auth
