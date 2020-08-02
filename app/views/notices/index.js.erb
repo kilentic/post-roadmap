@@ -1,0 +1,8 @@
+$('#show-notifyy').html('<%= j render 'notifications', notifications: @notifications %>');
+$.ajax({
+  url: '<%= notice_path(id: 'all') %>',
+  type: 'PATCH',
+  dataType: 'script',
+  success: function(data){
+  }
+})

@@ -1,0 +1,11 @@
+$("#ass-fr-btn").replaceWith("<%= j render 'add_friend', user: @user %>");
+if (<%= @type %> > 0){
+  $("#notify-req_<%= @user.id %>").remove();
+  if (<%= @req_count %> > 0){
+    $(".req-count-wrap").html("<p class='p-notify req-count' ><%= @req_count %></p>");
+  }else{
+    $(".req-count-wrap").html("");
+  }
+}else{
+
+}

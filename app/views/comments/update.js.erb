@@ -1,0 +1,3 @@
+$("#cmt_<%= @comment.id %> .content").html("<%= @comment.content %>");
+$("#cmt_<%= @comment.id %> .content").removeClass("hidden");
+$("#edit_comment_<%= @comment.id %>").remove();

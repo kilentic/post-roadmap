@@ -1,0 +1,16 @@
+<%= form_for(@user, :url => usr_path(@user), :method => "patch",  remote: true) do |f| %>
+  <div class="error-wraper"></div>
+  <%= f.label :birthday %>
+  <%= f.date_field :birthday, autofocus: true, class: "form-control", value: f.object.try(:strftime,"%m/%d/%Y") %>
+  <%= f.label :gender %>
+  <%= f.select :gender, options_for_select([["Select One", ""], "Male", "Famale"]), class:"form-control" %>
+  <br>
+  <%= f.label :phone %>
+  <%= f.number_field :phone, class: "form-control" %>
+  <%= f.label :address %>
+  <%= f.text_field :address, class: "form-control" %>
+  <div class="btn-wrap">
+    <%= f.submit "Update", class:"btn btn-primary" %>
+    <button class="btn">Cancer</button>
+  </div>
+<% end %>

@@ -1,0 +1,39 @@
+<div class="commenti" id="cmt_<%= comment.id %>">
+  <!-- usr_path(comment.user) -->
+    <%= link_to render( partial: 'shared/avatar', locals: {user: comment.user}), usr_path(comment.user) %>
+        <div class="comment">
+          <h6>
+            <!-- usr_path(comment.user) -->
+                <%= link_to comment.user.name, usr_path(comment.user) %>
+            </h6>
+            <div class="content">
+                <%= comment.content %>
+            </div>
+        </div>
+        <% if comment.post.user == current_user || comment.user == current_user %>
+        <div class="dropdown-wrapper">
+            <button type="button" class="setting-post-btn" onclick="dropdown('#cmt_setting_<%= comment.id %>')"><%= fa_icon "angle-down" %></button>
+            <div class="dropdown-content" id="cmt_setting_<%= comment.id %>">
+              <% if comment.user == current_user %>
+                <%= link_to edit_comment_path(comment), class: "edit-btn", remote: true do %>
+                    <%= fa_icon "pencil" %> Edit
+                  <% end %>
+                <% end %>
+                            <%= link_to comment_path(comment), method: "delete", remote: true, class: "del-btn", data: { confirm: "Are you sure?" } do %>
+                                <%= fa_icon "trash" %> Delete
+                                    <% end %>
+            </div>
+        </div>
+      <% end %>
+        <div class="clearfix"></div>
+        <div class="like-time-comment-wrap">
+            <%= form_for Like.new, remote:true, :html => {:id => "new_like_comment_#{comment.id}"} do |f| %>
+                <%= f.hidden_field :duty_type, value:"Comment", id: "like-duty-comment_#{comment.id}" %>
+                    <%= f.hidden_field :duty_id, value: comment.id, id:"duty-comment_#{comment.id}" %>
+                        <%= f.button :submit, remote:true, id:"like_Comment_#{comment.id}", class:(comment.likes.find_by(user_id:current_user.id)?"active-btn":"") do %>
+                            Like(<span class="like-count"><%= comment.likes.count %></span>)
+                            <% end %>
+                                <% end %>
+                                <p><%= comment.interval %> <%= comment.unit %></p>
+        </div>
+</div>

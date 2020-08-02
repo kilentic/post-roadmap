@@ -1,0 +1,9 @@
+<% seen = ReqFriend.find_by(req_user_id: user, res_user_id: c_user).seen %>
+<div class="req-friend notify <%= (seen) ? '' : 'active' %> " id="notify-req_<%= user.id %>">
+  <%= link_to render(partial: 'shared/avatar', locals:{user: user}), "#" %>
+  <p><%= link_to user.name, usr_path(user) %></p>
+  <%= link_to "Delete", req_friend_path(user), remote: true, method: "delete", class:"btn btn-delete" %>
+  <%= link_to "Confirm", friends_path(user), remote: true, method: "post", class:"btn btn-confirm" %>
+  <div class="clearfix"></div>
+</div>
+<hr>

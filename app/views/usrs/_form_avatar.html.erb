@@ -1,0 +1,31 @@
+<div class="card-bg">
+  <div class="card-wrapper container">
+    <div class="card-titl">Update avatar
+      <button onclick="removeElement('.card-bg');"><%= fa_icon 'times' %></button>
+    </div>
+
+    <div class="card-bd">
+      <%= form_for :update_avatar, url: update_avatar_path(), method:'post' do |f| %>
+        <%= f.text_area :message, placeholder:"Add a description..." %>
+        <div class="avatar-return">
+          <img id="img_prev" src="#" alt="your image" />
+        </div>
+        <div class="upload-avatar-btn-wrap">
+      <div class="new-avatar-wrap">
+        <%= f.file_field :avatar, class:"file-input-avatar", id: "new-avatar", onchange:"readURL(this);" %>
+        <%= f.hidden_field :x, id:'x', name:'x' %>
+        <%= f.hidden_field :y, id:'y', name:'y' %>
+        <%= f.hidden_field :w, id:'w', name:'w' %>
+        <%= f.hidden_field :h, id:'h', name:'h' %>
+        <%= f.label "Select a image...", for:"new-avatar", class:"new-avatar-trigger" %>
+      </div>
+      <div>
+      <button class="btn btn-cancer" onclick="removeElement('.card-bg');">Cancer</button>
+      <%= f.submit "Upload", class: "submit-upload-avatar", disabled: true %>
+      </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

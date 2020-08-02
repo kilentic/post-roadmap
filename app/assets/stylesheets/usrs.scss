@@ -1,0 +1,313 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.no-posts-vailable{
+    text-align: center;
+    font-size: 30px;
+    color: #65676B;
+    font-weight: bold;
+}
+.common-card{
+    border-radius: 7px;
+    padding: 11px;
+    background: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    
+    .header-common-card{
+      .mutual-count{
+        font-size: 15px;
+        color: gray;
+        font-weight: 100;
+      }
+      span{
+        font-weight: bold;
+        font-size: 18px;
+
+        a{
+          color: black;
+        }
+      }
+
+    }
+}
+
+.card-bg {
+  height: 100vh;
+    position: fixed;
+    width: 100%;
+    z-index: 13;
+    background: rgba(0,0,0, 0.5);
+
+    .card-wrapper {
+      width: fit-content;
+      min-width: 35%;
+      padding-bottom: 10px;
+      background: white;
+    margin: 4% auto auto;
+    border-radius: 6px;
+
+      .card-titl{
+            font-weight: bold;
+    background: gray;
+    margin-bottom: 10px;
+    padding: 5px 12px;
+    font-size: 17px;
+    border-radius: 0 0 10px 10px;
+    color: white;
+
+    button{
+      float: right;
+    border-radius: 53px;
+    background: none;
+    color: white;
+    border: none;
+    cursor: pointer;
+    }
+    button:focus{
+      outline: none;
+    }
+      }
+      .card-bd{
+
+        .avatar-return{
+          text-align: center;
+          margin: 10px auto;
+
+          img{
+                max-width: 80%;
+                max-height: 50vh;
+                display: none;
+          }
+        }
+        .file-input-avatar::-webkit-file-upload-button {
+          visibility: hidden;
+        }
+        .file-input-avatar::before {
+  content: 'Select some files';
+  display: inline-block;
+  background: linear-gradient(top, #f9f9f9, #e3e3e3);
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px #fff;
+  font-weight: 700;
+  font-size: 10pt;
+        }
+        textarea{
+          width: 96%;
+    border: none;
+    border-bottom: 1px gray solid;
+    margin: 0 2%;
+        }
+
+        textarea:focus{
+          outline: none;
+        }
+
+        .upload-avatar-btn-wrap{
+          display: grid;
+    grid-template-columns: auto 167px;
+
+        .btn-cancer{
+              font-size: 18px;
+    font-weight: 700;
+    padding: 2px 7px;
+    color: cornflowerblue;
+
+        }
+        .submit-upload-avatar{
+              background: gray;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: not-allowed;
+        }
+
+        .new-avatar-wrap{
+          position: relative;
+          width: fit-content;
+
+          .file-input-avatar{
+                position: absolute;
+		height: 30px;
+                opacity: 0;
+                cursor: pointer;
+                background: #39D2B4;
+                width: 200px;
+          }
+          .new-avatar-trigger{
+                background: #39D2B4;
+                margin-bottom: 0;
+                width: 200px;
+                cursor: pointer;
+                height: 30px;
+                color: white;
+                font-size: 17px;
+                font-weight: 700;
+                padding: 3px 20px;
+                border-radius: 4px;
+          }
+        }
+      }
+      }
+    }
+
+}
+.bg-wrap {
+    height: 447px;
+    overflow: hidden;
+
+    img {
+      max-width: 100%;
+    }
+
+}
+        .avatar-show {
+              top: 149px;
+    left: 40%;
+      position: absolute;
+      .avatar-wrap{
+        border-radius: 136px;
+	border: 5px white solid;
+
+      overflow: hidden;
+       position: relative;
+      img {
+              max-width: 235px;
+      }
+      button:hover{
+        background: rgba(0, 0, 0, 0.6);
+        cursor: pointer;
+      }
+      button:focus{
+        outline: none;
+      }
+      button{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        display: none;
+        left: 0;
+        height: 30%;
+        background: rgba(0, 0, 0, 0.3);
+        font-size: 33px;
+        border: none;
+        color: white;
+      }
+    }
+      .name {
+            font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+    text-rendering: optimizelegibility;
+    text-align: center;
+    text-shadow: 0 0 3px rgba(0, 0, 0, .8);
+      }
+    }
+    .detail-wrap {
+      margin: 0 15% 0 5%;
+      display: grid;
+      grid-template-columns: 25% 75%;
+      .posts-user{
+        margin-top: 18px;
+      }
+      .information-wrap {
+    margin-top: 26px;
+        position: relative;
+        .friend-list-wrapper{
+          margin-top: 10px;
+          
+          .friend-list{
+            display: grid;
+            margin-top: 5px;
+            grid-template-columns: 33% 33% 33%;
+          
+
+
+          .a-friend{
+            text-decoration: none;
+            width: 95%;
+
+
+            p{
+              font-size: 15px;
+              line-height: 18px;
+              margin-bottom: 5px;
+              text-align: center;
+              color: cadetblue;
+            }
+
+            img{
+              max-width: 100%;
+              width: 100%;
+              border-radius: 8px;
+            }
+            
+          }
+        }
+        }
+        .action-association {
+              height: fit-content;
+    z-index: 2;
+    .dd-req-fri{
+      width: 90%;
+      display: none;
+    margin-top: -3px;
+      position: absolute;
+    background: buttonface;
+    hr{
+      margin: 0;
+    }
+    button{
+      width: 97%;
+    }
+    }
+    .btn{
+      margin: 5px;
+      background: buttonface;
+      color: black;
+    }
+          
+        }
+        .information{
+          display: grid;
+          grid-template-columns: 70% 30%;
+          margin-top: 10px;
+        height: fit-content;
+    z-index: 2;
+    .btn-edit-info-wrap{
+      text-align: right;
+    }
+  }
+        .label{
+          font-size: 18px;
+          font-weight: bold;
+
+        }
+
+
+      }
+    }
+
+    @media only screen and (device-width: 726px),
+only screen and (max-width:726px){
+  .wrapper-nonposition{
+    grid-template-columns: 1fr;
+
+    .other-user-wrapper{
+      display: none;
+    }
+  }
+      .detail-wrap{
+	margin: 0 5%;
+        display: block;
+      }
+    }

@@ -1,0 +1,9 @@
+<%= form_for(post,  remote: true) do |f| %>
+  <div class="error-wraper"></div>
+  <%= f.text_area :message, autofocus: true, class: "form-control" %>
+  <div class="btn-wrap">
+  <%= f.submit btn, class:"btn btn-primary" %>
+  <button class="btn" onclick="cancerBtn(<%= post.id %>)">Cancer</button>
+  <div class="clearfix"></div>
+  </div>
+<% end %>

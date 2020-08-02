@@ -1,0 +1,269 @@
+// Broadcast Types
+const JOIN_ROOM = "JOIN_ROOM";
+const EXCHANGE = "EXCHANGE";
+const REMOVE_USER = "REMOVE_USER";
+const ON_OFF_VIDEO = "ON_OFF_VIDEO";
+
+// DOM Elements
+let currentUser;
+let remoteUser;
+let localVideo;
+let remoteVideoContainer;
+
+// Objects
+let pcPeers = {};
+let localstream;
+
+window.onload = () => {
+  currentUser = $("#current_user").attr('data-cuser');
+  remoteUser = $("#remote_user").attr('data-ruser');
+  localVideo = document.getElementById("local-video");
+  remoteVideoContainer = document.getElementById("remote-video-container");
+};
+
+// Ice Credentials
+const ice = { iceServers: [{ urls: "stun:stun.l.google.com:19302" }] };
+
+// Initialize user's own video
+document.onreadystatechange = () => {
+  if (document.readyState === "interactive") {
+    navigator.mediaDevices
+      .getUserMedia({
+        audio: true,
+        video: true
+      })
+      .then(stream => {
+        localstream = stream;
+
+      })
+      .catch(logError);
+  }
+  if (document.readyState === "complete"){
+    handleJoinSession();
+  }
+};
+
+function stopVideo(){
+  localstream.getVideoTracks()[0].enabled = !(localstream.getVideoTracks()[0].enabled);
+  //
+}
+
+function toggleVideo(){
+  tgVideoImg = $("#video-icon-img-id");
+
+  localstream.getVideoTracks()[0].enabled = !(localstream.getVideoTracks()[0].enabled);
+  //
+  localstream.getVideoTracks()[0].enabled ? tgVideoImg.attr("src", "video_icon.png") : tgVideoImg.attr("src", "not_video_icon.png");
+  //
+  localVideo.srcObject = localstream;
+  //
+  localVideo.muted = true;
+  //
+  broadcastData({
+    type: ON_OFF_VIDEO,
+     stt: localstream.getVideoTracks()[0].enabled 
+    //stt: false
+
+  });
+}
+
+function toggleAudio(){
+  tgAudio = $("#toggleAudio");
+   localstream.getAudioTracks()[0].enabled = !(localstream.getAudioTracks()[0].enabled);
+  localstream.getAudioTracks()[0].enabled ? tgAudio.html("<i class='fa fa-microphone'></i>") : 
+    tgAudio.html("<i class='fa fa-microphone-slash'></i>");
+}
+
+const handleJoinSession = async () => {
+  App.session = await App.cable.subscriptions.create("VideoCallChannel", {
+    connected: () => {
+      broadcastData({
+        type: JOIN_ROOM,
+        from: currentUser
+      });
+    },
+    received: data => {
+      console.log("received", data);
+      if (data.from === currentUser) return;
+      switch (data.type) {
+        case JOIN_ROOM:
+          return joinRoom(data);
+        case EXCHANGE:
+          if (data.to !== currentUser) return;
+          return exchange(data);
+        case REMOVE_USER:
+          return removeUser(data);
+        case ON_OFF_VIDEO:
+          data.stt ? $(".remote-video").removeClass("hidden") : $(".remote-video").addClass("hidden") ;
+          console.log("status "+data.stts);
+          return;
+        default:
+          return;
+      }
+    }
+  });
+};
+
+const handleLeaveSession = () => {
+  fetch("/video_call/cancel?id="+remoteUser, {
+    method: "get",
+    headers: { "content-type": "application/json" }
+  }).then(
+  );
+  for (user in pcPeers) {
+    pcPeers[user].close();
+  }
+  pcPeers = {};
+
+  App.session.unsubscribe();
+
+  remoteVideoContainer.innerHTML = "";
+
+  broadcastDataEnd({
+    type: REMOVE_USER,
+    from: currentUser
+  }); 
+
+};
+
+const joinRoom = data => {
+  createPC(data.from, true);
+};
+
+const removeUser = data => {
+  console.log("removing user", data.from);
+  let video = document.getElementById(`remoteVideoContainer+${data.from}`);
+  video && video.remove();
+  delete pcPeers[data.from];
+        window.opener = self;
+      window.close();
+
+};
+$('#close_window').on('click', function(){
+ });
+const createPC = (userId, isOffer) => {
+  let pc = new RTCPeerConnection(ice);
+  pcPeers[userId] = pc;
+  stopVideo();
+  pc.addStream(localstream);
+
+  isOffer &&
+    pc
+      .createOffer()
+      .then(offer => {
+        pc.setLocalDescription(offer);
+        broadcastData({
+          type: EXCHANGE,
+          from: currentUser,
+          to: userId,
+          sdp: JSON.stringify(pc.localDescription)
+        });
+      })
+      .catch(logError);
+
+  pc.onicecandidate = event => {
+    event.candidate &&
+      broadcastData({
+        type: EXCHANGE,
+        from: currentUser,
+        to: userId,
+        candidate: JSON.stringify(event.candidate)
+      });
+  };
+
+  pc.onaddstream = event => {
+    const element = document.createElement("video");
+    element.id = `remoteVideoContainer+${userId}`;
+    element.autoplay = "autoplay";
+    element.className = "remote-video hidden";
+    element.srcObject = event.stream;
+    remoteVideoContainer.appendChild(element);
+
+
+    var time = $("#wait-to-call");
+    var insertZero = n => n < 10 ? "0"+n : ""+n,
+    displayTime = n => time.html(insertZero(~~(n/3600)%3600) + ":" +
+                                             insertZero(~~(n/60)%60) + ":" +
+                                             insertZero(n%60));
+                        /* : time.textContent = "IGNITION..!", */
+    countDownFrom = n => (displayTime(n), setTimeout(_ =>  sid = countDownFrom(++n), 1000))
+    countDownFrom(0);
+    tutut = $("#signal-ringtone")[0];
+    tutut.pause();
+    tutut.currentTime = 0;
+  };
+
+  pc.oniceconnectionstatechange = event => {
+    if (pc.iceConnectionState == "disconnected") {
+      console.log("Disconnected:", userId);
+      broadcastData({
+        type: REMOVE_USER,
+        from: userId
+      });
+    }
+  };
+
+  return pc;
+};
+
+const exchange = data => {
+  let pc;
+
+  if (!pcPeers[data.from]) {
+    pc = createPC(data.from, false);
+  } else {
+    pc = pcPeers[data.from];
+  }
+
+  if (data.candidate) {
+    pc
+      .addIceCandidate(new RTCIceCandidate(JSON.parse(data.candidate)))
+      .then(() => console.log("Ice candidate added"))
+      .catch(logError);
+  }
+
+  if (data.sdp) {
+    sdp = JSON.parse(data.sdp);
+    pc
+      .setRemoteDescription(new RTCSessionDescription(sdp))
+      .then(() => {
+        if (sdp.type === "offer") {
+          pc.createAnswer().then(answer => {
+            pc.setLocalDescription(answer);
+            broadcastData({
+              type: EXCHANGE,
+              from: currentUser,
+              to: data.from,
+              sdp: JSON.stringify(pc.localDescription)
+            });
+          });
+        }
+      })
+      .catch(logError);
+  }
+};
+
+const broadcastData = data => {
+  fetch("/video_call/broadcast_data?id="+remoteUser, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "content-type": "application/json" }
+  }).then(data =>{
+    console.log(data);
+  });
+};
+const broadcastDataEnd = data => {
+  fetch("/video_call/broadcast_data?id="+remoteUser, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "content-type": "application/json" }
+  }).then(data =>{
+    window.opener = self;
+    window.close();
+
+
+  });
+};
+
+
+const logError = error => console.warn("Whoops! Error:", error);

@@ -1,0 +1,7 @@
+<div class="room">
+
+  <%= link_to rooms_path(id: user.id) , remote: true, method: "post" do %>
+    <%= render( partial: 'shared/avatar', locals: {user: user}) %> <span> <%= user.name %></span>
+  <% end %>
+
+</div>

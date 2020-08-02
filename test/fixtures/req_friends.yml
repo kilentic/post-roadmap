@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  req_user_id: 1
+  res_user_id: 1
+  seen: false
+
+two:
+  req_user_id: 1
+  res_user_id: 1
+  seen: false

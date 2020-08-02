@@ -1,0 +1,79 @@
+<%= render "shared/header" %>
+<div class="user-wrap">
+  <div class="bg-wrap">
+    <%= image_tag "bg3.jpg" %>
+  </div>
+    <div class="avatar-show">
+      <div class="avatar-wrap" onmouseover="showUploadAvatarBtn(this);" onmouseleave="hideUploadAvatarBtn(this);">
+        <%= image_tag @user.image %>
+        <% if @user === current_user %>
+          <%#if false %>
+          <%= button_to  upload_avatar_path(), method: 'get', remote: true do %>
+            <%= fa_icon 'camera' %>
+          <% end %>
+        <% end %>
+      </div>
+      <p class="name"><%= @user.name %></p>
+    </div>
+  <div class="detail-wrap">
+    <div class="information-wrap">
+      <div class="action-association common-card">
+        <% if @user != current_user %>
+          <% if @isFollow %>
+            <%= render 'follows/following', follower: @user %>
+          <% else %>
+            <%= render 'follows/unfollow', unfollower: @user %>
+          <% end %>
+        <% end  %>
+
+        <% if current_user != @user %>
+          
+          <% if @isReqFriend %>
+            <%= render 'req_friends/respone', user: @user %>
+          <% end %>
+          <% if @isResFriend %>
+            <%= render 'req_friends/requested', user: @user %>
+          <% end %>
+          <% if !@isReqFriend && !@isResFriend %>
+            <% if !@isFriend %>
+              <%= render 'req_friends/add_friend', user: @user %>
+            <% else %>
+              <%= render 'friends/unfriend', user: @user %>
+            <% end %>
+          <% end %>
+        <% end %>
+        <div id="message-btn" style="display: none;">
+          <%= link_to rooms_path(id: @user.id), remote: true, method:'post', class:'btn' do %>
+            <%= fa_icon "comments" %> Message
+          <% end %>
+        </div>
+      </div>
+
+      <div class="information common-card">
+        <div class="infos">
+          <%= render "info", user: @user %>
+
+        </div>
+        <div class="btn-edit-info-wrap">
+          <% if @user == current_user %>
+            <%= link_to fa_icon("edit"),  edit_usr_path(@user), remote: true, class:"btn" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="friend-list-wrapper common-card">
+        <div class="header-common-card">
+          <span><a href="#">Friends</a></span>
+          <span class="mutual-count"><%= @user.get_friend_count %> <%= (@user.get_mutual_friends(current_user).count == 0 || @user === current_user) ? "" : "(#{@user.get_mutual_friends(current_user).count} Mutual)" %></span>
+        </div>
+        <div class="friend-list">
+          <%= render partial: "friend_list", locals: {users: @user.get_friend_list } %>
+        </div>
+      </div>
+       
+    </div>
+    <div class="card-grid posts-user <%= @posts.count === 0 ? 'no-posts-vailable' : '' %> ">
+      <%= (@posts.count === 0) ? "No posts available" : (render @posts) %> 
+    </div>
+  </div>
+</div>
+<%= render 'shared/footer' %>

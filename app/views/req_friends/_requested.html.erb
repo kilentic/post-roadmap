@@ -1,0 +1,10 @@
+<div id="ass-fr-btn">
+<button class="btn" onclick="dropdown('.dd-req-fri')">
+  <%= fa_icon "user-plus" %> Friend request sent
+</button>
+  <div class="dd-req-fri">
+    <%= link_to req_friend_path(user), method:"delete", remote: true, class:"btn" do %>
+      <%= fa_icon "trash" %> Delete request
+    <% end %>
+  </div>
+</div>
