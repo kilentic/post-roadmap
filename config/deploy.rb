@@ -6,6 +6,12 @@ set :repo_url, "git@github.com:dainguyenbla/post-roadmap.git"
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
 set :rvm_ruby_version, '2.5.3'
 set :passenger_restart_with_touch, true
+task :restart, :clear_cache do
+  on roles(:app) do
+    execute "cd /var/www/post-roadmap/current"
+    execute :sudo, :systemctl, :restart, :sidekiq
+  end
+end
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp

@@ -138,16 +138,18 @@ function closeSelf(caller) {
     $(caller).parent().parent().parent().remove();
 }
 var videoWindow = null;
-function openWindow(url){
-  console.log(url);
-videoWindow = window.open(url,  '_blank');
+
+function openWindow(url) {
+    console.log(url);
+    videoWindow = window.open(url, '_blank');
 }
 
-function closeWindow(){
-  if(videoWindow!=null){
-	videoWindow.close();}
+function closeWindow() {
+    if (videoWindow != null) {
+        videoWindow.close();
+    }
 
-  
+
 }
 
 function cancerBtnCmt(idCmt) {
