@@ -67,6 +67,8 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
   config.active_job.queue_adapter = :sidekiq
 
+
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
@@ -80,6 +82,7 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  Rails.application.routes.default_url_options[:host] = 'ec2-18-207-142-182.compute-1.amazonaws.com'
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'

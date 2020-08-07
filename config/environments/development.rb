@@ -32,7 +32,7 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Set host for active storage
-  Rails.application.routes.default_url_options[:host] = 'localhost:3000'
+  Rails.application.routes.default_url_options[:host] = 'ec2-18-207-142-182.compute-1.amazonaws.com'
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
