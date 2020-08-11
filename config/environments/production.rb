@@ -9,7 +9,7 @@ Rails.application.configure do
   # and those relying on copy on write to perform better.
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
-
+  config.web_console.development_only = false
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
@@ -29,7 +29,7 @@ Rails.application.configure do
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
-
+  Rails.application.routes.default_url_options[:host] = 'ec2-18-207-142-182.compute-1.amazonaws.com'
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
@@ -65,6 +65,9 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "post-roadmap_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
+  config.active_job.queue_adapter = :sidekiq
+
+
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
@@ -79,6 +82,7 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+  Rails.application.routes.default_url_options[:host] = 'ec2-18-207-142-182.compute-1.amazonaws.com'
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
