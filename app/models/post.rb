@@ -5,6 +5,7 @@ class Post < ApplicationRecord
   after_initialize :interval_cal
 
   has_many_attached :images
+  has_many_attached :files
   has_many :likes, as: :duty
   belongs_to :user
   has_many :comments,  dependent: :destroy

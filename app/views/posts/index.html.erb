@@ -33,6 +33,11 @@
                     <%= f.label  for:'post-photo' do %>
                       <%= fa_icon('image')%> Photo
                     <% end %>
+                    <%= f.file_field :files, id:'post-file', multiple: true, onchange:"showPostBtn(this);" %>
+                    <%= f.label  for:'post-file' do %>
+                      <%= fa_icon('paperclip')%> Attach
+                    <% end %>
+
                     </div>
                     <%= f.submit "Post", class:"btn btn-primary" %>
                   <% end %>
