@@ -6,8 +6,11 @@ class Post < ApplicationRecord
 
   has_many_attached :images
   has_many_attached :files
+  has_many_attached :videos
+
   has_many :likes, as: :duty
   belongs_to :user
+  belongs_to :group
   has_many :comments,  dependent: :destroy
   paginates_per 50
 
